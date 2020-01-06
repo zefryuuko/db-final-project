@@ -19,7 +19,7 @@
       </Text>
       <ImageView fitHeight="87.0" fitWidth="101.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@Images/logo.jpeg" />
+            <Image url="@../Images/logo.jpeg" />
          </image>
       </ImageView>
       <TextField layoutX="67.0" layoutY="124.0" prefHeight="31.0" prefWidth="202.0" promptText="Staff ID">

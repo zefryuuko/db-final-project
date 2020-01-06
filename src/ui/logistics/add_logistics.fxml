@@ -10,22 +10,22 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Text layoutX="240.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ADD ITEM">
+      <Text layoutX="213.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ADD LOGISTICS">
          <font>
             <Font name="Segoe UI" size="25.0" />
          </font>
       </Text>
       <ImageView fitHeight="87.0" fitWidth="101.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@Images/logo.jpeg" />
+            <Image url="@../Images/logo.jpeg" />
          </image>
       </ImageView>
-      <TextField layoutX="67.0" layoutY="124.0" prefHeight="31.0" prefWidth="202.0" promptText="Item ID">
+      <TextField layoutX="65.0" layoutY="129.0" prefHeight="31.0" prefWidth="202.0" promptText="Staff ID">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <TextField layoutX="336.0" layoutY="124.0" prefHeight="30.0" prefWidth="202.0" promptText="Item Price">
+      <TextField layoutX="334.0" layoutY="129.0" prefHeight="30.0" prefWidth="202.0" promptText="Customer Name">
          <font>
             <Font size="15.0" />
          </font>
@@ -40,5 +40,20 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
+      <TextField layoutX="334.0" layoutY="186.0" prefHeight="31.0" prefWidth="202.0" promptText="Logistics Provider">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <TextField layoutX="65.0" layoutY="241.0" prefHeight="31.0" prefWidth="202.0" promptText="Tracking Number">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <TextField layoutX="65.0" layoutY="186.0" prefHeight="31.0" prefWidth="202.0" promptText="Customer Address">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
    </children>
 </Pane>

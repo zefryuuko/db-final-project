@@ -23,7 +23,7 @@
       </Text>
       <ImageView fitHeight="97.0" fitWidth="106.0" layoutX="10.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@Images/logo.jpeg" />
+            <Image url="@../Images/logo.jpeg" />
          </image>
       </ImageView>
       <Pane layoutY="115.0" prefHeight="605.0" prefWidth="1280.0" style="-fx-background-color: #b89d82;">
