@@ -1,4 +1,4 @@
-package sample;
+package database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -21,7 +21,7 @@ public class DBConnect {
         try {  //in-capsulate the function into a try and catch
 
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://dbta.1ez.xyz", "DAV7304", "lpl95q3o");
+            con = DriverManager.getConnection("jdbc:mysql://db.zryk.xyz", "david", "Password123");
             st = con.createStatement();
         }
         catch (Exception e) {
