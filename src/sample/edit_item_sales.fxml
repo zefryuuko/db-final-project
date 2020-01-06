@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text layoutX="240.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EDIT ITEM">
+         <font>
+            <Font name="Segoe UI" size="25.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="87.0" fitWidth="101.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../Images/logo.jpeg" />
+         </image>
+      </ImageView>
+      <TextField layoutX="67.0" layoutY="124.0" prefHeight="31.0" prefWidth="202.0" promptText="Item ID">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <TextField layoutX="336.0" layoutY="124.0" prefHeight="30.0" prefWidth="202.0" promptText="Item Price">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <Button layoutX="372.0" layoutY="357.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="166.0" style="-fx-background-color: #000000;" text="DONE" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <Button layoutX="67.0" layoutY="357.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="166.0" style="-fx-background-color: #000000;" text="CANCEL" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+   </children>
+</Pane>
