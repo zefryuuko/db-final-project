@@ -19,7 +19,7 @@
                   <Font name="Consolas" size="45.0" />
                </font>
             </Text>
-            <Button layoutX="1190.0" layoutY="35.0" mnemonicParsing="false" text="LOGOUT" />
+            <Button fx:id="logout" layoutX="1190.0" layoutY="35.0" mnemonicParsing="false" onAction="#clickLogout" text="LOGOUT" />
          </children>
       </AnchorPane>
    </top>
@@ -136,22 +136,22 @@
                   <TableColumn prefWidth="373.0" text="Stored" />
               </columns>
             </TableView>
-            <Button layoutX="941.0" layoutY="524.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="108.0" style="-fx-background-color: #f22424;" text="DELETE">
+            <Button fx:id="delete" layoutX="941.0" layoutY="524.0" mnemonicParsing="false" onAction="#clickDelete" prefHeight="39.0" prefWidth="108.0" style="-fx-background-color: #f22424;" text="DELETE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Button>
-            <Button layoutX="49.0" layoutY="524.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="166.0" style="-fx-background-color: #FFFFFF;" text="ADD ITEM">
+            <Button fx:id="addItem" layoutX="49.0" layoutY="524.0" mnemonicParsing="false" onAction="#clickAddItem" prefHeight="39.0" prefWidth="166.0" style="-fx-background-color: #FFFFFF;" text="ADD ITEM">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Button>
-            <Button layoutX="800.0" layoutY="524.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="119.0" style="-fx-background-color: #FFFFFF;" text="EDIT">
+            <Button fx:id="edit" layoutX="800.0" layoutY="524.0" mnemonicParsing="false" onAction="#clickEdit" prefHeight="39.0" prefWidth="119.0" style="-fx-background-color: #FFFFFF;" text="EDIT">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Button>
-            <Button layoutX="947.0" layoutY="24.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="101.0" style="-fx-background-color: #FFFFFF;" text="REFRESH">
+            <Button fx:id="refresh" layoutX="947.0" layoutY="24.0" mnemonicParsing="false" onAction="#clickRefresh" prefHeight="39.0" prefWidth="101.0" style="-fx-background-color: #FFFFFF;" text="REFRESH">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>

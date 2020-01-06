@@ -9,12 +9,25 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class financesController {
+    public Button logout;
+    public Button refresh;
     public Button staff;
     public Button sales;
     public Button inventory;
     public Button history;
     public Button finances;
     public Button logistics;
+
+    public void clickLogout() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../logout_modal.fxml"));
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    public void clickRefresh() throws IOException {
+
+    }
 
     public void clickStaff() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../staff/staff.fxml"));

@@ -9,12 +9,29 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class salesController {
+    public Button logout;
+    public Button refresh;
     public Button staff;
     public Button sales;
     public Button inventory;
     public Button history;
     public Button finances;
     public Button logistics;
+    public Button addSales;
+//    public Button addItem;
+    public Button edit;
+    public Button delete;
+
+    public void clickLogout() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../logout_modal.fxml"));
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    public void clickRefresh() throws IOException {
+
+    }
 
     public void clickStaff() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../staff/staff.fxml"));
@@ -50,5 +67,26 @@ public class salesController {
         Parent root = FXMLLoader.load(getClass().getResource("../logistics/logistics.fxml"));
         Stage stage = (Stage) logistics.getScene().getWindow();
         stage.setScene(new Scene(root));
+    }
+
+    public void clickAddSales() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../sales/add_sales.fxml"));
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    public void clickEdit() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../sales/edit_sales.fxml"));
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    public void clickDelete() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../delete_modal.fxml"));
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 }
