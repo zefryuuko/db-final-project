@@ -1,4 +1,6 @@
 package sample;
 
-public class login_page_controller extends DBConnect{
+import database.DBConnect;
+
+public class login_page_controller extends DBConnect {
 }
