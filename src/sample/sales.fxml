@@ -17,7 +17,7 @@
          <children>
             <ImageView fitHeight="97.0" fitWidth="106.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../Images/logo.jpeg" />
+                  <Image url="@Images/logo.jpeg" />
                </image>
             </ImageView>
             <Text fill="#5b3815" layoutX="103.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DASHBOARD">
@@ -36,7 +36,7 @@
                <children>
                   <ImageView fitHeight="81.0" fitWidth="77.0" layoutX="61.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../Images/avatar.png" />
+                        <Image url="@Images/avatar.png" />
                      </image>
                   </ImageView>
                   <Text fill="WHITE" layoutX="55.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin Panel">
@@ -58,7 +58,7 @@
                <graphic>
                   <ImageView accessibleRole="BUTTON" fitHeight="41.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../Images/sales.png" />
+                        <Image url="@Images/sales.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -70,7 +70,7 @@
                <graphic>
                   <ImageView accessibleRole="BUTTON" fitHeight="41.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../Images/staff.png" />
+                        <Image url="@Images/staff.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -82,7 +82,7 @@
                <graphic>
                   <ImageView accessibleRole="BUTTON" fitHeight="41.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../Images/inventory.png" />
+                        <Image url="@Images/inventory.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -94,7 +94,7 @@
                <graphic>
                   <ImageView accessibleRole="BUTTON" fitHeight="41.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../Images/history.png" />
+                        <Image url="@Images/history.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -106,7 +106,7 @@
                <graphic>
                   <ImageView accessibleRole="BUTTON" fitHeight="41.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../Images/finance.png" />
+                        <Image url="@Images/finance.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -118,7 +118,7 @@
                <graphic>
                   <ImageView accessibleRole="BUTTON" fitHeight="41.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../Images/logistics.png" />
+                        <Image url="@Images/logistics.png" />
                      </image>
                   </ImageView>
                </graphic>
