@@ -153,11 +153,49 @@ public class Staff extends DBConnect {
         return true;
     }
 
+    public static boolean updateStaff(int staffId, String firstName, String lastName, int salary, int positionId, int statusId) {
+        try {
+            String query = "UPDATE Staff SET staff_fname = ?, staff_lname = ?, staff_salary = ?, staff_position_id = ?, staff_status_id = ? WHERE staff_id = ?";
+            PreparedStatement pst = connection.prepareStatement(query);
+            pst.setString(1, firstName);
+            pst.setString(2, lastName);
+            pst.setInt(3, salary);
+            pst.setInt(4, positionId);
+            pst.setInt(5, statusId);
+            pst.setInt(6, staffId);
+            int affectedRows = pst.executeUpdate();
+
+            if (affectedRows == 0) return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
+    }
+
     public static boolean addStaffPosition(String positionName) {
         try {
             String query = "INSERT INTO StaffPosition (position_name) VALUES (?)";
             PreparedStatement pst = connection.prepareStatement(query);
             pst.setString(1, positionName);
+            int affectedRows = pst.executeUpdate();
+
+            if (affectedRows == 0) return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
+    }
+
+    public static boolean updateStaffPosition(int positionId, String positionName) {
+        try {
+            String query = "UPDATE StaffPosition SET position_name = ? WHERE position_id = ?";
+            PreparedStatement pst = connection.prepareStatement(query);
+            pst.setString(1, positionName);
+            pst.setInt(2, positionId);
             int affectedRows = pst.executeUpdate();
 
             if (affectedRows == 0) return false;
