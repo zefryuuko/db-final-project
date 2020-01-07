@@ -8,7 +8,27 @@ import java.util.HashMap;
 
 public class Purchase extends DBConnect{
     // CREATE
+    public static boolean addNewItemPurchase(String itemName, String itemVendor, int itemType, int itemStored, int itemPrice, boolean itemSellable, int staffId, int purchaseCount, int purchasePriceTotal) {
+        int item_id = Inventory.createItemReturnItemId(itemName, itemVendor, itemType, itemStored, itemPrice, itemSellable);
+        if (item_id == -1) return false;
 
+        try {
+            String query = "INSERT INTO PurchaseHistory (purchase_date, staff_id, item_id, purchase_count, purchase_price_total) VALUES (NOW(), ?, ?, ?, ?)";
+            PreparedStatement pst = connection.prepareStatement(query);
+            pst.setInt(1, staffId);
+            pst.setInt(2, item_id);
+            pst.setInt(3, purchaseCount);
+            pst.setInt(4, purchasePriceTotal);
+            int affectedRows = pst.executeUpdate();
+
+            if (affectedRows == 0) return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
+    }
 
     // READ
     public static ArrayList<HashMap<String, String>> getPurchases() {
