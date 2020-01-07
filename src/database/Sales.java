@@ -36,6 +36,30 @@ public class Sales extends DBConnect{
         return result;
     }
 
+    public static ArrayList<HashMap<String, String>> getSalesDetails(int salesId) {
+        ArrayList<HashMap<String, String>> result = new ArrayList<>();
+
+        try {
+            String query = "SELECT d.item_id, i.item_name, i.item_price FROM SalesDetails d LEFT JOIN Item i ON i.item_id = d.item_id WHERE d.sales_id = ?;";
+            PreparedStatement pst = connection.prepareStatement(query);
+            pst.setInt(1, salesId);
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                HashMap<String, String> row = new HashMap<>();
+                row.put("id", Integer.toString(rs.getInt("item_id")));
+                row.put("itemName", rs.getString("item_name"));
+                row.put("itemPrice", Integer.toString(rs.getInt("item_price")));
+                result.add(row);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return result;
+        }
+
+        return result;
+    }
+
     // UPDATE
 
     // DELETE
