@@ -125,6 +125,21 @@ public class Inventory extends DBConnect {
     }
 
     // DELETE
+    public static boolean deleteItem(int itemId) {
+        try {
+            String query = "DELETE FROM Item WHERE item_id = ?";
+            PreparedStatement pst = connection.prepareStatement(query);
+            pst.setInt(1, itemId);
+            int affectedRows = pst.executeUpdate();
+
+            if (affectedRows == 0) return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
+    }
 
     // ----------
     // Item Types
@@ -188,4 +203,19 @@ public class Inventory extends DBConnect {
     }
 
     // DELETE
+    public static boolean deleteItemType(int itemId) {
+        try {
+            String query = "DELETE FROM ItemType WHERE item_id = ?";
+            PreparedStatement pst = connection.prepareStatement(query);
+            pst.setInt(1, itemId);
+            int affectedRows = pst.executeUpdate();
+
+            if (affectedRows == 0) return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
+    }
 }
