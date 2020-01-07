@@ -61,6 +61,25 @@ public class Sales extends DBConnect{
         return result;
     }
 
+    public static HashMap<Integer, String> getSalesTypes() {
+        HashMap<Integer, String> result = new HashMap<>();
+
+        try {
+            String query = "SELECT * FROM SalesType";
+            PreparedStatement pst = connection.prepareStatement(query);
+            ResultSet rs = pst.executeQuery();
+
+            while(rs.next()) {
+                result.put(rs.getInt("type_id"), rs.getString("type_name"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return result;
+        }
+
+        return result;
+    }
+
     // UPDATE
     public static boolean updateSales(int salesId, String custName, int salesType) {
         try {
