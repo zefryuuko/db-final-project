@@ -15,9 +15,14 @@ import java.io.IOException;
 
 public class delete_modalController {
     private int id;
+    private staffController sC;
 
     public Button cancel;
     public Button delete;
+
+    public void setSC(staffController sC) {
+        this.sC = sC;
+    }
 
     public void setID(int id) {
         this.id = id;
@@ -47,6 +52,7 @@ public class delete_modalController {
         if (Main.primaryStage.getTitle().equals("Lokalisasi Bali - Logistics")) {
             logisticsController lC = Main.loader.getController();
         }
+        sC.refreshTable();
         Stage stage = (Stage) delete.getScene().getWindow();
         stage.close();
     }

@@ -175,6 +175,7 @@ public class staffController {
         Parent root = loader.load();
         add_staffController a_sC = loader.getController();
         a_sC.refreshBox();
+        a_sC.setSC(this);
         stage.setScene(new Scene(root));
         stage.show();
     }
@@ -194,6 +195,7 @@ public class staffController {
         Parent root = loader.load();
         delete_modalController d_mC = loader.getController();
         d_mC.setID(Integer.parseInt(table.getSelectionModel().getSelectedItem().getId()));
+        d_mC.setSC(this);
         stage.setScene(new Scene(root));
         stage.show();
     }
