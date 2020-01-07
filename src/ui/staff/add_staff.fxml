@@ -17,38 +17,22 @@
             <Image url="@../Images/logo.jpeg" />
          </image>
       </ImageView>
-      <TextField layoutX="67.0" layoutY="124.0" prefHeight="31.0" prefWidth="202.0" promptText="Frst Name">
+      <TextField fx:id="firstName" layoutX="67.0" layoutY="124.0" prefHeight="31.0" prefWidth="202.0" promptText="Frst Name">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <TextField layoutX="336.0" layoutY="124.0" prefHeight="30.0" prefWidth="202.0" promptText="Surname">
+      <TextField fx:id="surname" layoutX="336.0" layoutY="124.0" prefHeight="30.0" prefWidth="202.0" promptText="Surname">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <TextField layoutX="67.0" layoutY="175.0" prefHeight="31.0" prefWidth="202.0" promptText="Salary">
+      <TextField fx:id="salary" layoutX="67.0" layoutY="175.0" prefHeight="31.0" prefWidth="202.0" promptText="Salary">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <TextField layoutX="336.0" layoutY="175.0" prefWidth="202.0" promptText="Status">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </TextField>
-      <MenuButton layoutX="67.0" layoutY="248.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="202.0" text="Position">
-         <items>
-            <MenuItem mnemonicParsing="false" text="Barista" />
-            <MenuItem mnemonicParsing="false" text="Cashier" />
-            <MenuItem mnemonicParsing="false" text="Sales" />
-            <MenuItem mnemonicParsing="false" text="Social Media" />
-            <MenuItem mnemonicParsing="false" text="Operations" />
-         </items>
-         <font>
-            <Font name="Segoe UI" size="15.0" />
-         </font>
-      </MenuButton>
+      <ComboBox fx:id="status" layoutX="336.0" layoutY="176.0" prefHeight="30.0" prefWidth="202.0" promptText="Status" />
       <Button fx:id="addStaff" layoutX="372.0" layoutY="357.0" mnemonicParsing="false" onAction="#clickAddStaff" prefHeight="30.0" prefWidth="166.0" style="-fx-background-color: #000000;" text="ADD STAFF" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
@@ -59,5 +43,6 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
+      <ComboBox fx:id="position" layoutX="67.0" layoutY="228.0" prefHeight="30.0" prefWidth="202.0" promptText="Position" />
    </children>
 </Pane>

@@ -31,11 +31,35 @@ public class Staff extends DBConnect {
         return result;
     }
 
+    public static HashMap<String, String> getStaff(int staffId) {
+        HashMap<String, String> result = new HashMap<>();
+
+        try {
+            String query = "SELECT s.staff_id, s.staff_fname, s.staff_lname, s.staff_salary, p.position_name, t.status_name FROM Staff s LEFT JOIN StaffPosition p ON s.staff_position_id = p.position_id LEFT JOIN StaffStatus t ON s.staff_status_id = t.status_id;";
+            PreparedStatement pst = connection.prepareStatement(query);
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                result.put("id", Integer.toString(rs.getInt("staff_id")));
+                result.put("firstName", rs.getString("staff_fname"));
+                result.put("lastName", rs.getString("staff_lname"));
+                result.put("salary", Integer.toString(rs.getInt("staff_salary")));
+                result.put("position", rs.getString("position_name"));
+                result.put("status", rs.getString("status_name"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return result;
+        }
+
+        return result;
+    }
+
     public static HashMap<Integer, String> getStaffPositionDetails() {
         HashMap<Integer, String> result = new HashMap<>();
 
         try {
-            String query = "SELECT * FROM StaffLevels";
+            String query = "SELECT * FROM StaffPosition";
             PreparedStatement pst = connection.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
 

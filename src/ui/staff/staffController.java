@@ -80,7 +80,7 @@ public class staffController {
     }
 
     public void refreshTable() {
-        System.out.println("asdsadas");
+        table.getItems().clear();
         ArrayList<HashMap<String, String>> query = Staff.getStaffs();
         for (int i = 0; i < query.size(); i++) {
             String id = null, firstName = null, surname = null, salary = null, position = null, status = null;
@@ -170,7 +170,10 @@ public class staffController {
     }
 
     public void clickAddStaff() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../staff/add_staff.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../staff/add_staff.fxml"));
+        Parent root = loader.load();
+        add_staffController a_sC = loader.getController();
+        a_sC.refreshBox();
         stage.setScene(new Scene(root));
         stage.show();
     }
