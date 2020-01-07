@@ -128,11 +128,11 @@
                   <Font name="Segoe UI" size="25.0" />
                </font>
             </Text>
-            <TableView layoutX="49.0" layoutY="71.0" prefHeight="400.0" prefWidth="600.0">
+            <TableView layoutX="49.0" layoutY="71.0" prefHeight="400.0" prefWidth="1000.0">
               <columns>
-                <TableColumn prefWidth="200.0" text="Date" />
-                <TableColumn prefWidth="200.0" text="Income" />
-                  <TableColumn prefWidth="199.0" text="Expenses" />
+                <TableColumn prefWidth="333.0" text="Date" />
+                <TableColumn prefWidth="333.0" text="Income" />
+                  <TableColumn prefWidth="333.0" text="Expenses" />
               </columns>
             </TableView>
             <Button fx:id="refresh" layoutX="948.0" layoutY="24.0" mnemonicParsing="false" onAction="#clickRefresh" prefHeight="39.0" prefWidth="101.0" style="-fx-background-color: #FFFFFF;" text="REFRESH">
