@@ -108,4 +108,36 @@ public class Staff extends DBConnect {
 
         return result;
     }
+
+    public static boolean addStaff(String firstName, String lastName, int salary, int positionId, int statusId) {
+        try {
+            String query = "INSERT INTO Staff (staff_fname, staff_lname, staff_salary, staff_position_id, staff_status_id) VALUES (?, ?, ?, ?, ?)";
+            PreparedStatement pst = connection.prepareStatement(query);
+            pst.setString(1, firstName);
+            pst.setString(2, lastName);
+            pst.setInt(3, salary);
+            pst.setInt(4, positionId);
+            pst.setInt(5, statusId);
+            ResultSet rs = pst.executeQuery();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
+    }
+
+    public static boolean addStaffPosition(String positionName) {
+        try {
+            String query = "INSERT INTO StaffPosition (position_name) VALUES (?)";
+            PreparedStatement pst = connection.prepareStatement(query);
+            pst.setString(1, positionName);
+            ResultSet rs = pst.executeQuery();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
+    }
 }
