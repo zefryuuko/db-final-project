@@ -30,28 +30,6 @@ public class Purchase extends DBConnect{
         return true;
     }
 
-    public static boolean addExistingItemPurchase(int itemId, int staffId, int purchaseCount, int purchasePriceTotal) {
-        boolean updateItemStatus = Inventory.updateItemCount(itemId, purchaseCount);
-        if (!updateItemStatus) return false;
-
-        try {
-            String query = "INSERT INTO PurchaseHistory (purchase_date, staff_id, item_id, purchase_count, purchase_price_total) VALUES (NOW(), ?, ?, ?, ?)";
-            PreparedStatement pst = connection.prepareStatement(query);
-            pst.setInt(1, staffId);
-            pst.setInt(2, itemId);
-            pst.setInt(3, purchaseCount);
-            pst.setInt(4, purchasePriceTotal);
-            int affectedRows = pst.executeUpdate();
-
-            if (affectedRows == 0) return false;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-
-        return true;
-    }
-
     // READ
     public static ArrayList<HashMap<String, String>> getPurchases() {
         ArrayList<HashMap<String, String>> result = new ArrayList<>();
@@ -81,6 +59,27 @@ public class Purchase extends DBConnect{
     }
 
     // UPDATE
+    public static boolean addExistingItemPurchase(int itemId, int staffId, int purchaseCount, int purchasePriceTotal) {
+        boolean updateItemStatus = Inventory.updateItemCount(itemId, purchaseCount);
+        if (!updateItemStatus) return false;
+
+        try {
+            String query = "INSERT INTO PurchaseHistory (purchase_date, staff_id, item_id, purchase_count, purchase_price_total) VALUES (NOW(), ?, ?, ?, ?)";
+            PreparedStatement pst = connection.prepareStatement(query);
+            pst.setInt(1, staffId);
+            pst.setInt(2, itemId);
+            pst.setInt(3, purchaseCount);
+            pst.setInt(4, purchasePriceTotal);
+            int affectedRows = pst.executeUpdate();
+
+            if (affectedRows == 0) return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
+    }
 
     // DELETE
 }
