@@ -5,8 +5,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Inventory extends DBConnect {
+    // -----
     // Items
+    // -----
 
+    // CREATE
+
+    // READ
     public static ArrayList<HashMap<String, String>> getItems() {
         ArrayList<HashMap<String, String>> result = new ArrayList<>();
 
@@ -59,8 +64,17 @@ public class Inventory extends DBConnect {
         return result;
     }
 
-    // Item Types
+    // UPDATE
 
+    // DELETE
+
+    // ----------
+    // Item Types
+    // ----------
+
+    // CREATE
+
+    // READ
     public static ArrayList<HashMap<String, String>> getItemTypes() {
         ArrayList<HashMap<String, String>> result = new ArrayList<>();
 
@@ -81,4 +95,8 @@ public class Inventory extends DBConnect {
 
         return result;
     }
+
+    // UPDATE
+
+    // DELETE
 }
