@@ -27,6 +27,23 @@ public class Sales extends DBConnect{
         return true;
     }
 
+    public static boolean addSalesDetails(int salesId, int item_id) {
+        try {
+            String query = "INSERT INTO SalesDetails (sales_id, item_id) VALUES (?, ?)";
+            PreparedStatement pst = connection.prepareStatement(query);
+            pst.setInt(1, salesId);
+            pst.setInt(2, item_id);
+            int affectedRows = pst.executeUpdate();
+
+            if (affectedRows == 0) return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
+    }
+
     // READ
     public static ArrayList<HashMap<String, String>> getSales() {
         ArrayList<HashMap<String, String>> result = new ArrayList<>();
