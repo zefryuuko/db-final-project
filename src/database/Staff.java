@@ -35,8 +35,9 @@ public class Staff extends DBConnect {
         HashMap<String, String> result = new HashMap<>();
 
         try {
-            String query = "SELECT s.staff_id, s.staff_fname, s.staff_lname, s.staff_salary, p.position_name, t.status_name FROM Staff s LEFT JOIN StaffPosition p ON s.staff_position_id = p.position_id LEFT JOIN StaffStatus t ON s.staff_status_id = t.status_id;";
+            String query = "SELECT s.staff_id, s.staff_fname, s.staff_lname, s.staff_salary, p.position_name, t.status_name FROM Staff s LEFT JOIN StaffPosition p ON s.staff_position_id = p.position_id LEFT JOIN StaffStatus t ON s.staff_status_id = t.status_id WHERE staff_id = ?";
             PreparedStatement pst = connection.prepareStatement(query);
+            pst.setInt(1, staffId);
             ResultSet rs = pst.executeQuery();
 
             while (rs.next()) {
@@ -74,8 +75,8 @@ public class Staff extends DBConnect {
         return result;
     }
 
-    public static String getStaffPosition(int staffId) {
-        String result = "";
+    public static int getStaffPosition(int staffId) {
+        int result = -1;
 
         try {
             String query = "SELECT staff_position_id FROM Staff WHERE staff_id = ?";
@@ -84,7 +85,7 @@ public class Staff extends DBConnect {
             ResultSet rs = pst.executeQuery();
 
             while (rs.next()) {
-                result = rs.getString("staff_position_id");
+                result = rs.getInt("staff_position_id");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -113,8 +114,8 @@ public class Staff extends DBConnect {
         return result;
     }
 
-    public static String getStaffStatus(int staffId) {
-        String result = "";
+    public static int getStaffStatus(int staffId) {
+        int result = -1;
 
         try {
             String query = "SELECT staff_status_id FROM Staff WHERE staff_id = ?";
@@ -123,7 +124,7 @@ public class Staff extends DBConnect {
             ResultSet rs = pst.executeQuery();
 
             while (rs.next()) {
-                result = rs.getString("staff_status_id");
+                result = rs.getInt("staff_status_id");
             }
         } catch (Exception e) {
             e.printStackTrace();
