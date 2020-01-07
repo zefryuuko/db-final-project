@@ -7,6 +7,25 @@ import java.util.HashMap;
 
 public class Logistics extends DBConnect {
     // CREATE
+    public static boolean createLogisticsEntry(int staffId, int salesId, String custAddress, int providerId, int trackingNumber) {
+        try {
+            String query = "INSERT INTO Logistics (staff_id, sales_id, cust_address, provider_id, trackingNumber, date_sent) VALUES (?, ?, ?, ?, ?, NOW())";
+            PreparedStatement pst = connection.prepareStatement(query);
+            pst.setInt(1, staffId);
+            pst.setInt(2, salesId);
+            pst.setString(3, custAddress);
+            pst.setInt(4, providerId);
+            pst.setInt(5, trackingNumber);
+            int affectedRows = pst.executeUpdate();
+
+            if (affectedRows == 0) return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
+    }
 
     // READ
     public static ArrayList<HashMap<String, String>> getLogisticsDetails() {
