@@ -182,6 +182,11 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Button>
+            <Button fx:id="addStaff11" layoutX="429.0" layoutY="524.0" mnemonicParsing="false" onAction="#clickAddStaff" prefHeight="39.0" prefWidth="166.0" style="-fx-background-color: #088519;" text="PAY">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Button>
          </children>
       </Pane>
    </center>
