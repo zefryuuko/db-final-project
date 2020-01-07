@@ -13,6 +13,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import ui.Main;
+import ui.delete_modalController;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -174,18 +175,28 @@ public class staffController {
         Parent root = loader.load();
         add_staffController a_sC = loader.getController();
         a_sC.refreshBox();
+        a_sC.setSC(this);
         stage.setScene(new Scene(root));
         stage.show();
     }
 
     public void clickEdit() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../staff/edit_staff.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../staff/edit_staff.fxml"));
+        Parent root = loader.load();
+        edit_staffController e_sC = loader.getController();
+        e_sC.setID(Integer.parseInt(table.getSelectionModel().getSelectedItem().getId()));
+        e_sC.refreshBox();
+        e_sC.setSC(this);
         stage.setScene(new Scene(root));
         stage.show();
     }
 
     public void clickDelete() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../delete_modal.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../delete_modal.fxml"));
+        Parent root = loader.load();
+        delete_modalController d_mC = loader.getController();
+        d_mC.setID(Integer.parseInt(table.getSelectionModel().getSelectedItem().getId()));
+        d_mC.setSC(this);
         stage.setScene(new Scene(root));
         stage.show();
     }
