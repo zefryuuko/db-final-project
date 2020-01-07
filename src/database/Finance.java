@@ -2,7 +2,9 @@ package database;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Finance extends DBConnect{
     // Class definition
@@ -83,6 +85,22 @@ public class Finance extends DBConnect{
         return result;
     }
 
+    public static ArrayList<FinanceDetails> getFinanceDetailsByDate(String date) {
+        ArrayList<FinanceDetails> result = new ArrayList<>();
+        for (FinanceDetails income : getIncomeOnDate(date)) {
+            result.add(income);
+        }
+
+        for (FinanceDetails expenses : getPurchaseExpensesOnDate(date)) {
+            result.add(expenses);
+        }
+
+        for (FinanceDetails expenses : getSalaryExpensesOnDate(date)) {
+            result.add(expenses);
+        }
+        return result;
+    }
+
     // Get Income
     private static ArrayList<Income> getIncome() {
         ArrayList<Income> result = new ArrayList<>();
@@ -95,6 +113,26 @@ public class Finance extends DBConnect{
             while (rs.next()) {
                 Income row = new Income(rs.getDate("date").toString(), rs.getInt("income"));
                 result.add(row);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return result;
+        }
+
+        return result;
+    }
+
+    private static ArrayList<FinanceDetails> getIncomeOnDate(String date) {
+        ArrayList<FinanceDetails> result = new ArrayList<>();
+
+        try {
+            String query = "SELECT s.sales_id, DATE(s.sales_datetime) as date, SUM(i.item_price) as income FROM Sales s LEFT JOIN SalesDetails d ON s.sales_id = d.sales_id LEFT JOIN Item i ON d.item_id = i.item_id WHERE DATE(s.sales_datetime) = ? GROUP BY s.sales_id;";
+            PreparedStatement pst = connection.prepareStatement(query);
+            pst.setString(1, date);
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                result.add(new FinanceDetails(date, "Sales Income - ID:" + Integer.toString(rs.getInt("sales_id")), rs.getInt("income")));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -125,6 +163,26 @@ public class Finance extends DBConnect{
         return result;
     }
 
+    private static ArrayList<FinanceDetails> getPurchaseExpensesOnDate(String date) {
+        ArrayList<FinanceDetails> result = new ArrayList<>();
+
+        try {
+            String query = "SELECT purchase_id, DATE(purchase_date) as date, SUM(purchase_price_total) as expenses FROM PurchaseHistory WHERE purchase_date = ? GROUP BY DATE(purchase_date);";
+            PreparedStatement pst = connection.prepareStatement(query);
+            pst.setString(1, date);
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                result.add(new FinanceDetails(date, "Purchases Expense - ID:" + Integer.toString(rs.getInt("purchase_id")), rs.getInt("expenses")));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return result;
+        }
+
+        return result;
+    }
+
     private static ArrayList<Expense> getSalaryExpenses() {
         ArrayList<Expense> result = new ArrayList<>();
 
@@ -136,6 +194,26 @@ public class Finance extends DBConnect{
             while (rs.next()) {
                 Expense row = new Expense(rs.getDate("date").toString(), rs.getInt("expenses"));
                 result.add(row);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return result;
+        }
+
+        return result;
+    }
+
+    private static ArrayList<FinanceDetails> getSalaryExpensesOnDate(String date) {
+        ArrayList<FinanceDetails> result = new ArrayList<>();
+
+        try {
+            String query = "SELECT payment_id, DATE(payment_date) as date, SUM(payment_amount) as expenses FROM SalaryPaymentHistory WHERE payment_date = ? GROUP BY DATE(payment_date);";
+            PreparedStatement pst = connection.prepareStatement(query);
+            pst.setString(1, date);
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                result.add(new FinanceDetails(date, "Salary Expense - ID:" + Integer.toString(rs.getInt("payment_id")), rs.getInt("expenses")));
             }
         } catch (Exception e) {
             e.printStackTrace();
