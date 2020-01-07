@@ -136,7 +136,7 @@ public class Inventory extends DBConnect {
 
     public static boolean updateItemCount(int itemId, int itemAddCount) {
         try {
-            String query = "UPDATE Item SET item_stored + ? WHERE item_id = ?";
+            String query = "UPDATE Item SET item_stored = item_stored + ? WHERE item_id = ?";
             PreparedStatement pst = connection.prepareStatement(query);
             pst.setInt(1, itemAddCount);
             pst.setInt(2, itemId);
@@ -190,8 +190,8 @@ public class Inventory extends DBConnect {
     }
 
     // READ
-    public static ArrayList<HashMap<String, String>> getItemTypes() {
-        ArrayList<HashMap<String, String>> result = new ArrayList<>();
+    public static HashMap<Integer, String> getItemTypes() {
+        HashMap<Integer, String> result = new HashMap<>();
 
         try {
             String query = "SELECT type_id, type_name FROM ItemType";
@@ -199,9 +199,7 @@ public class Inventory extends DBConnect {
             ResultSet rs = pst.executeQuery();
 
             while (rs.next()) {
-                HashMap<String, String> row = new HashMap<>();
-                row.put("id", Integer.toString(rs.getInt("type_id")));
-                row.put("name", rs.getString("type_name"));
+                result.put(rs.getInt("type_id"), rs.getString("type_name"));
             }
         } catch (Exception e) {
             e.printStackTrace();

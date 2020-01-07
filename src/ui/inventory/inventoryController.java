@@ -9,6 +9,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
+import ui.delete_modalController;
+import ui.staff.add_staffController;
 import ui.staff.staffController;
 
 import java.io.IOException;
@@ -37,6 +39,8 @@ public class inventoryController {
     public Button addItem;
     public Button edit;
     public Button delete;
+
+    Stage stage = new Stage();
 
     public static class theInventory {
         public String getVendor() {
@@ -179,22 +183,44 @@ public class inventoryController {
     }
 
     public void clickAddItem() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../inventory/add_item.fxml"));
-        Stage stage = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../inventory/add_item.fxml"));
+        Parent root = loader.load();
+        add_itemController a_iC = loader.getController();
+        a_iC.setIC(this);
+        a_iC.setID(table.getSelectionModel().getSelectedItem().getId());
+        a_iC.setName2(table.getSelectionModel().getSelectedItem().getName());
+        a_iC.refreshBox();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    public void clickNewItem() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../inventory/new_item.fxml"));
+        Parent root = loader.load();
+        new_itemController n_iC = loader.getController();
+        n_iC.setIC(this);
+        n_iC.refreshBox();
         stage.setScene(new Scene(root));
         stage.show();
     }
 
     public void clickEdit() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../inventory/edit_item.fxml"));
-        Stage stage = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../inventory/edit_item.fxml"));
+        Parent root = loader.load();
+        edit_itemController e_iC = loader.getController();
+        e_iC.setID(table.getSelectionModel().getSelectedItem().getId());
+        e_iC.setIC(this);
+        e_iC.refreshBox();
         stage.setScene(new Scene(root));
         stage.show();
     }
 
     public void clickDelete() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../delete_modal.fxml"));
-        Stage stage = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../delete_modal.fxml"));
+        Parent root = loader.load();
+        delete_modalController d_mC = loader.getController();
+        d_mC.setID(table.getSelectionModel().getSelectedItem().getId());
+        d_mC.setIC(this);
         stage.setScene(new Scene(root));
         stage.show();
     }
