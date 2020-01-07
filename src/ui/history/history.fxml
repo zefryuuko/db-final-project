@@ -136,7 +136,7 @@
                   <TableColumn prefWidth="150.0" text="Name" />
                   <TableColumn prefWidth="125.0" text="Vendor" />
                   <TableColumn prefWidth="125.0" text="Staff ID" />
-                  <TableColumn prefWidth="150.0" text="Purschase Cost" />
+                  <TableColumn prefWidth="150.0" text="Purchase Cost" />
                   <TableColumn prefWidth="150.0" text="Buy Count" />
               </columns>
             </TableView>
