@@ -140,4 +140,38 @@ public class Staff extends DBConnect {
 
         return true;
     }
+
+
+    public static boolean deleteStaff(int staffId) {
+        try {
+            String query = "DELETE FROM Staff WHERE staff_id = ?";
+            PreparedStatement pst = connection.prepareStatement(query);
+            pst.setInt(1, staffId);
+            int affectedRows = pst.executeUpdate();
+            
+            if (affectedRows == 0) return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
+    }
+
+
+    public static boolean deletePosition(int positionId) {
+        try {
+            String query = "DELETE FROM StaffPosition WHERE staff_id = ?";
+            PreparedStatement pst = connection.prepareStatement(query);
+            pst.setInt(1, positionId);
+            int affectedRows = pst.executeUpdate();
+
+            if (affectedRows == 0) return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
+    }
 }
