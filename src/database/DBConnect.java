@@ -13,16 +13,12 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class DBConnect {
-    private Connection con;
-    private Statement st;
-    private ResultSet rs;
+    public static Connection connection;
+    public DBConnect() {
+        try {
 
-    DBConnect() {
-        try {  //in-capsulate the function into a try and catch
-
-            Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://db.zryk.xyz", "david", "Password123");
-            st = con.createStatement();
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            connection = DriverManager.getConnection("jdbc:mysql://db.zryk.xyz/lokalisasibali", "david", "Password123");
         }
         catch (Exception e) {
             e.printStackTrace();
