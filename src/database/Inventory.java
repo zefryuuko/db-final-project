@@ -10,7 +10,7 @@ public class Inventory extends DBConnect {
     // -----
 
     // CREATE
-    public static boolean addItem(String itemName, String itemVendor, int itemType, int itemStored, int itemPrice, boolean itemSellable) {
+    public static boolean createItem(String itemName, String itemVendor, int itemType, int itemStored, int itemPrice, boolean itemSellable) {
         try {
             String query = "INSERT INTO Item (item_name, item_vendor, item_type, item_stored, item_price, item_sellable) VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement pst = connection.prepareStatement(query);
