@@ -118,7 +118,9 @@ public class Staff extends DBConnect {
             pst.setInt(3, salary);
             pst.setInt(4, positionId);
             pst.setInt(5, statusId);
-            ResultSet rs = pst.executeQuery();
+            int affectedRows = pst.executeUpdate();
+
+            if (affectedRows == 0) return false;
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -132,7 +134,9 @@ public class Staff extends DBConnect {
             String query = "INSERT INTO StaffPosition (position_name) VALUES (?)";
             PreparedStatement pst = connection.prepareStatement(query);
             pst.setString(1, positionName);
-            ResultSet rs = pst.executeQuery();
+            int affectedRows = pst.executeUpdate();
+
+            if (affectedRows == 0) return false;
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -148,7 +152,7 @@ public class Staff extends DBConnect {
             PreparedStatement pst = connection.prepareStatement(query);
             pst.setInt(1, staffId);
             int affectedRows = pst.executeUpdate();
-            
+
             if (affectedRows == 0) return false;
         } catch (Exception e) {
             e.printStackTrace();
