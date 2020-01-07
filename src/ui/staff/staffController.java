@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import ui.Main;
 import ui.delete_modalController;
+import ui.history.historyController;
 import ui.inventory.inventoryController;
 
 import java.io.IOException;
@@ -154,7 +155,10 @@ public class staffController {
     }
 
     public void clickHistory() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../history/history.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../history/history.fxml"));
+        Parent root = loader.load();
+        historyController hC = loader.getController();
+        hC.refreshTable();
         Stage stage = (Stage) history.getScene().getWindow();
         stage.setTitle("Lokalisasi Bali - History");
         stage.setScene(new Scene(root));

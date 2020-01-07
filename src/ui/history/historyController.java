@@ -1,5 +1,6 @@
 package ui.history;
 
+import database.Purchase;
 import database.Staff;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -36,43 +37,92 @@ public class historyController {
     public Button logistics;
 
     public static class theHistory {
-        private String id, firstName, surname, salary, position, status;
+        private String date, name, type, vendor, buyCount, staff, id, purchaseCost;
+
+        public theHistory(String date, String name, String type, String vendor, String buyCount, String staff, String id, String purchaseCost) {
+            this.date = date;
+            this.name = name;
+            this.type = type;
+            this.vendor = vendor;
+            this.buyCount = buyCount;
+            this.staff = staff;
+            this.id = id;
+            this.purchaseCost = purchaseCost;
+        }
+
+        public String getDate() {
+            return date;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public String getType() {
+            return type;
+        }
+
+        public String getVendor() {
+            return vendor;
+        }
+
+        public String getBuyCount() {
+            return buyCount;
+        }
+
+        public String getStaff() {
+            return staff;
+        }
+
+        public String getId() {
+            return id;
+        }
+
+        public String getPurchaseCost() {
+            return purchaseCost;
+        }
     }
 
-//    public void refreshTable() {
-//        table.getItems().clear();
-//        ArrayList<HashMap<String, String>> query = ;
-//        for (int i = 0; i < query.size(); i++) {
-//            String id = null, firstName = null, surname = null, salary = null, position = null, status = null;
-//            int row = 0;
-//            for (String value : query.get(i).values()) {
-//                switch (row) {
-//                    case 0:
-//                        firstName = value;
-//                        break;
-//                    case 1:
-//                        surname = value;
-//                        break;
-//                    case 2:
-//                        id = value;
-//                        break;
-//                    case 3:
-//                        position = value;
-//                        break;
-//                    case 4:
-//                        salary = value;
-//                        break;
-//                    case 5:
-//                        status = value;
-//                        break;
-//                    default:
-//                        break;
-//                }
-//                row++;
-//            }
-//            table.getItems().add(new theHistory(id, firstName, surname, salary, position, status));
-//        }
-//    }
+    public void refreshTable() {
+        table.getItems().clear();
+        ArrayList<HashMap<String, String>> query = Purchase.getPurchases();
+        for (int i = 0; i < query.size(); i++) {
+            String date = null, name = null, type = null, vendor = null, buyCount = null, staff = null, id = null, purchaseCost = null;
+            int row = 0;
+            for (String value : query.get(i).values()) {
+                switch (row) {
+                    case 0:
+                        date = value;
+                        break;
+                    case 1:
+                        name = value;
+                        break;
+                    case 2:
+                        type = value;
+                        break;
+                    case 3:
+                        vendor = value;
+                        break;
+                    case 4:
+                        buyCount = value;
+                        break;
+                    case 5:
+                        staff = value;
+                        break;
+                    case 6:
+                        id = value;
+                        break;
+                    case 7:
+                        purchaseCost = value;
+                        break;
+                    default:
+                        break;
+                }
+                row++;
+            }
+            table.getItems().add(new theHistory(date, name, type, vendor, buyCount, staff, id, purchaseCost));
+        }
+    }
 
     public void clickLogout() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../logout_modal.fxml"));
@@ -82,7 +132,7 @@ public class historyController {
     }
 
     public void clickRefresh() throws IOException {
-
+        refreshTable();
     }
 
     public void clickStaff() throws IOException {
