@@ -1,17 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.finances.financesController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.finances.financesController">
    <top>
       <AnchorPane prefHeight="115.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
          <children>
@@ -134,11 +129,17 @@
                   <Font name="Segoe UI" size="25.0" />
                </font>
             </Text>
-            <TableView layoutX="49.0" layoutY="71.0" prefHeight="400.0" prefWidth="450.0">
+            <TableView fx:id="table" layoutX="49.0" layoutY="71.0" prefHeight="400.0" prefWidth="450.0">
               <columns>
-                <TableColumn prefWidth="150.0" text="Date" />
-                <TableColumn prefWidth="150.0" text="Income" />
-                  <TableColumn prefWidth="150.0" text="Expenses" />
+                <TableColumn fx:id="date" prefWidth="150.0" text="Date">
+                   <cellValueFactory><PropertyValueFactory property="date" /></cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="income" prefWidth="150.0" text="Income">
+                   <cellValueFactory><PropertyValueFactory property="income" /></cellValueFactory>
+                </TableColumn>
+                  <TableColumn fx:id="expenses" prefWidth="150.0" text="Expenses">
+                     <cellValueFactory><PropertyValueFactory property="expenses" /></cellValueFactory>
+                  </TableColumn>
               </columns>
             </TableView>
             <Button fx:id="refresh" layoutX="948.0" layoutY="24.0" mnemonicParsing="false" onAction="#clickRefresh" prefHeight="39.0" prefWidth="101.0" style="-fx-background-color: #FFFFFF;" text="REFRESH">
@@ -146,11 +147,17 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Button>
-            <TableView layoutX="599.0" layoutY="71.0" prefHeight="400.0" prefWidth="450.0">
+            <TableView fx:id="table2" layoutX="599.0" layoutY="71.0" prefHeight="400.0" prefWidth="450.0">
                <columns>
-                  <TableColumn prefWidth="150.0" text="Date" />
-                  <TableColumn prefWidth="150.0" text="Detail" />
-                  <TableColumn prefWidth="150.0" text="Amount" />
+                  <TableColumn fx:id="date2" prefWidth="150.0" text="Date">
+                     <cellValueFactory><PropertyValueFactory property="date" /></cellValueFactory>
+                  </TableColumn>
+                  <TableColumn fx:id="detail" prefWidth="150.0" text="Detail">
+                     <cellValueFactory><PropertyValueFactory property="detail" /></cellValueFactory>
+                  </TableColumn>
+                  <TableColumn fx:id="amount" prefWidth="150.0" text="Amount">
+                     <cellValueFactory><PropertyValueFactory property="amount" /></cellValueFactory>
+                  </TableColumn>
                </columns>
             </TableView>
             <Text fill="WHITE" layoutX="599.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EXPENSES DETAILS">
