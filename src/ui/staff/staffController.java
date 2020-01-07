@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import ui.Main;
 import ui.delete_modalController;
+import ui.inventory.inventoryController;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -143,7 +144,10 @@ public class staffController {
     }
 
     public void clickInventory() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../inventory/inventory.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../inventory/inventory.fxml"));
+        Parent root = loader.load();
+        inventoryController iC = loader.getController();
+        iC.refreshTable();
         Stage stage = (Stage) inventory.getScene().getWindow();
         stage.setTitle("Lokalisasi Bali - Inventory");
         stage.setScene(new Scene(root));
