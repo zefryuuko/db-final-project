@@ -228,7 +228,7 @@ public class Staff extends DBConnect {
 
     public static boolean deletePosition(int positionId) {
         try {
-            String query = "DELETE FROM StaffPosition WHERE staff_id = ?";
+            String query = "DELETE FROM StaffPosition WHERE position_id = ?";
             PreparedStatement pst = connection.prepareStatement(query);
             pst.setInt(1, positionId);
             int affectedRows = pst.executeUpdate();

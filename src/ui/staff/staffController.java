@@ -16,6 +16,7 @@ import ui.Main;
 import ui.delete_modalController;
 import ui.history.historyController;
 import ui.inventory.inventoryController;
+import ui.staff.position.positionController;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -40,6 +41,7 @@ public class staffController {
     public Button finances;
     public Button logistics;
     public Button addStaff;
+    public Button addPosition;
     public Button edit;
     public Button delete;
 
@@ -186,6 +188,20 @@ public class staffController {
         a_sC.setSC(this);
         stage.setScene(new Scene(root));
         stage.show();
+    }
+
+    public void clickPosition() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../staff/position/position.fxml"));
+        Parent root = loader.load();
+        positionController pC = loader.getController();
+        pC.refreshTable();
+        Stage stage = (Stage) addPosition.getScene().getWindow();
+        stage.setTitle("Lokalisasi Bali - Position");
+        stage.setScene(new Scene(root));
+    }
+
+    public void clickPay() {
+
     }
 
     public void clickEdit() throws IOException {

@@ -9,6 +9,7 @@ import ui.finances.financesController;
 import ui.history.historyController;
 import ui.logistics.logisticsController;
 import ui.sales.salesController;
+import ui.staff.position.positionController;
 import ui.staff.staffController;
 import ui.inventory.inventoryController;
 
@@ -22,6 +23,11 @@ public class delete_modalController {
 
     private staffController sC;
     private inventoryController iC;
+    private positionController pC;
+
+    public void setPC(positionController pC) {
+        this.pC = pC;
+    }
 
     public void setIC(inventoryController iC) {
         this.iC = iC;
@@ -60,6 +66,10 @@ public class delete_modalController {
         }
         if (Main.primaryStage.getTitle().equals("Lokalisasi Bali - Logistics")) {
             logisticsController lC = Main.loader.getController();
+        }
+        if (Main.primaryStage.getTitle().equals("Lokalisasi Bali - Position")) {
+            Staff.deletePosition(id);
+            pC.refreshTable();
         }
         Stage stage = (Stage) delete.getScene().getWindow();
         stage.close();
