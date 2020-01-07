@@ -65,7 +65,6 @@ public class edit_itemController {
         }
         type.setItems(obs);
         HashMap<String, String> query = Inventory.getItem(id);
-        System.out.println(query);
         int row = 0;
         for (String value : query.values()) {
             switch (row) {
@@ -106,7 +105,7 @@ public class edit_itemController {
     }
 
     public void clickDone() throws IOException {
-//        Inventory.updateItem(id, Main.staffID, Integer.parseInt(buyCount.getText()), Integer.parseInt(purchaseCost.getText()));
+//        Inventory.updateItem();
         iC.refreshTable();
         Stage stage = (Stage) done.getScene().getWindow();
         stage.close();
