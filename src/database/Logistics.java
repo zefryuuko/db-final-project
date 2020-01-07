@@ -56,6 +56,26 @@ public class Logistics extends DBConnect {
     }
 
     // UPDATE
+    public static boolean updateLogisticsEntry(int logisticsId, int staffId, int salesId, String custAddress, int providerId, int trackingNumber) {
+        try {
+            String query = "UPDATE Logistics SET staff_id = ?, sales_id = ?, cust_address = ?, provider_id = ?, trackingNumber = ? WHERE logistics_id = ?";
+            PreparedStatement pst = connection.prepareStatement(query);
+            pst.setInt(1, staffId);
+            pst.setInt(2, salesId);
+            pst.setString(3, custAddress);
+            pst.setInt(4, providerId);
+            pst.setInt(5, trackingNumber);
+            pst.setInt(6, logisticsId);
+            int affectedRows = pst.executeUpdate();
+
+            if (affectedRows == 0) return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
+    }
 
     // DELETE
 }
