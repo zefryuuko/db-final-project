@@ -57,7 +57,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="staff" alignment="TOP_CENTER" layoutX="2.0" layoutY="154.0" mnemonicParsing="false" onAction="#clickStaff" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: white;" text="STAFF">
+            <Button fx:id="staff" alignment="TOP_CENTER" layoutX="2.0" layoutY="154.0" mnemonicParsing="false" onAction="#clickStaff" prefHeight="52.0" prefWidth="201.0" style="-fx-background-color: white;" text="STAFF">
                <font>
                   <Font name="Book Antiqua Bold" size="20.0" />
                </font>
