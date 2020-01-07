@@ -35,7 +35,7 @@ public class Staff extends DBConnect {
         HashMap<Integer, String> result = new HashMap<>();
 
         try {
-            String query = "SELECT * FROM StaffLevels";
+            String query = "SELECT * FROM StaffPosition";
             PreparedStatement pst = connection.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
 
