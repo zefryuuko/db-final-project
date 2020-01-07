@@ -30,4 +30,82 @@ public class Staff extends DBConnect {
 
         return result;
     }
+
+    public static HashMap<Integer, String> getStaffPositionDetails() {
+        HashMap<Integer, String> result = new HashMap<>();
+
+        try {
+            String query = "SELECT * FROM StaffLevels";
+            PreparedStatement pst = connection.prepareStatement(query);
+            ResultSet rs = pst.executeQuery();
+
+            while(rs.next()) {
+                result.put(rs.getInt("position_id"), rs.getString("position_name"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return result;
+        }
+
+        return result;
+    }
+
+    public static String getStaffPosition(int staffId) {
+        String result = "";
+
+        try {
+            String query = "SELECT staff_position_id FROM Staff WHERE staff_id = ?";
+            PreparedStatement pst = connection.prepareStatement(query);
+            pst.setInt(1, staffId);
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                result = rs.getString("staff_position_id");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return result;
+        }
+
+        return result;
+    }
+
+    public static HashMap<Integer, String> getStaffStatusDetails() {
+        HashMap<Integer, String> result = new HashMap<>();
+
+        try {
+            String query = "SELECT * FROM StaffStatus";
+            PreparedStatement pst = connection.prepareStatement(query);
+            ResultSet rs = pst.executeQuery();
+
+            while(rs.next()) {
+                result.put(rs.getInt("status_id"), rs.getString("status_name"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return result;
+        }
+
+        return result;
+    }
+
+    public static String getStaffStatus(int staffId) {
+        String result = "";
+
+        try {
+            String query = "SELECT staff_status_id FROM Staff WHERE staff_id = ?";
+            PreparedStatement pst = connection.prepareStatement(query);
+            pst.setInt(1, staffId);
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                result = rs.getString("staff_status_id");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return result;
+        }
+
+        return result;
+    }
 }
