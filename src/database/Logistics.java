@@ -78,4 +78,19 @@ public class Logistics extends DBConnect {
     }
 
     // DELETE
+    public static boolean deleteLogisticsEntry(int logisticsId) {
+        try {
+            String query = "DELETE FROM Logistics WHERE logistic_id = ?";
+            PreparedStatement pst = connection.prepareStatement(query);
+            pst.setInt(1, logisticsId);
+            int affectedRows = pst.executeUpdate();
+
+            if (affectedRows == 0) return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
+    }
 }
