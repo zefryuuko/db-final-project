@@ -4,6 +4,7 @@ import database.Sales;
 import database.Staff;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -30,10 +31,14 @@ public class edit_salesController {
     }
 
     public void clickDone() throws IOException {
-        Sales.updateSales(Integer.parseInt(staffID.getText()), customerName.getText(), salesType.getSelectionModel().getSelectedItem().getId());
-        sC.refreshTable();
-        Stage stage = (Stage) done.getScene().getWindow();
-        stage.close();
+        try {
+            Sales.updateSales(Integer.parseInt(staffID.getText()), customerName.getText(), salesType.getSelectionModel().getSelectedItem().getId());
+            sC.refreshTable();
+            Stage stage = (Stage) done.getScene().getWindow();
+            stage.close();
+        } catch (NullPointerException e) {
+            new Alert(Alert.AlertType.ERROR, "Sales type must not be empty").showAndWait();
+        }
     }
 
     public TextField staffID, customerName;
