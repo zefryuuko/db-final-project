@@ -1,6 +1,7 @@
 package ui;
 
 import database.Inventory;
+import database.Sales;
 import database.Staff;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -24,6 +25,12 @@ public class delete_modalController {
     private staffController sC;
     private inventoryController iC;
     private positionController pC;
+
+    public void setSaC(salesController saC) {
+        this.saC = saC;
+    }
+
+    private salesController saC;
 
     public void setPC(positionController pC) {
         this.pC = pC;
@@ -52,18 +59,19 @@ public class delete_modalController {
             sC.refreshTable();
         }
         if (Main.primaryStage.getTitle().equals("Lokalisasi Bali - Sales")) {
-
+            Sales.deleteSales(id);
+            saC.refreshTable();
         }
         if (Main.primaryStage.getTitle().equals("Lokalisasi Bali - Inventory")) {
             Inventory.deleteItem(id);
             iC.refreshTable();
         }
-        if (Main.primaryStage.getTitle().equals("Lokalisasi Bali - History")) {
-            historyController hC = Main.loader.getController();
-        }
-        if (Main.primaryStage.getTitle().equals("Lokalisasi Bali - Finances")) {
-            financesController fC = Main.loader.getController();
-        }
+//        if (Main.primaryStage.getTitle().equals("Lokalisasi Bali - History")) {
+//
+//        }
+//        if (Main.primaryStage.getTitle().equals("Lokalisasi Bali - Finances")) {
+//
+//        }
         if (Main.primaryStage.getTitle().equals("Lokalisasi Bali - Logistics")) {
             logisticsController lC = Main.loader.getController();
         }

@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.sales.add_item_salesController">
    <children>
       <Text layoutX="240.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ADD ITEM">
          <font>
@@ -17,21 +17,21 @@
             <Image url="@../Images/logo.jpeg" />
          </image>
       </ImageView>
-      <Button layoutX="372.0" layoutY="357.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="166.0" style="-fx-background-color: #000000;" text="DONE" textFill="WHITE">
+      <Button fx:id="done" layoutX="372.0" layoutY="357.0" mnemonicParsing="false" onAction="#clickDone" prefHeight="30.0" prefWidth="166.0" style="-fx-background-color: #000000;" text="DONE" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
-      <Button layoutX="67.0" layoutY="357.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="166.0" style="-fx-background-color: #000000;" text="CANCEL" textFill="WHITE">
+      <Button fx:id="cancel" layoutX="67.0" layoutY="357.0" mnemonicParsing="false" onAction="#clickCancel" prefHeight="30.0" prefWidth="166.0" style="-fx-background-color: #000000;" text="CANCEL" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
-      <TableView layoutX="71.0" layoutY="113.0" prefHeight="200.0" prefWidth="450.0">
+      <TableView fx:id="table" layoutX="71.0" layoutY="113.0" prefHeight="200.0" prefWidth="450.0">
         <columns>
-          <TableColumn prefWidth="150.0" text="Item Name" />
-          <TableColumn prefWidth="150.0" text="Item Price" />
-            <TableColumn prefWidth="150.0" text="On Stock" />
+          <TableColumn fx:id="itemName" prefWidth="150.0" text="Item Name" />
+          <TableColumn fx:id="itemPrice" prefWidth="150.0" text="Item Price" />
+            <TableColumn fx:id="itemCount" prefWidth="150.0" text="Item Count" />
         </columns>
       </TableView>
    </children>
