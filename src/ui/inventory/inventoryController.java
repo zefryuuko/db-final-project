@@ -204,6 +204,15 @@ public class inventoryController {
         stage.show();
     }
 
+    public void clickNewItemType() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../inventory/add_type.fxml"));
+        Parent root = loader.load();
+        add_typeController a_tC = loader.getController();
+        a_tC.setIC(this);
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
     public void clickEdit() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../inventory/edit_item.fxml"));
         Parent root = loader.load();
