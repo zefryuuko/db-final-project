@@ -11,7 +11,7 @@ public class Sales extends DBConnect{
     // CREATE
     public static boolean addSales(int staffId, String custName, int salesType) {
         try {
-            String query = "INSERT INTO Sales (staff_id, cust_name, salesType) VALUES (?, ?, ?)";
+            String query = "INSERT INTO Sales (staff_id, cust_name, sales_type) VALUES (?, ?, ?)";
             PreparedStatement pst = connection.prepareStatement(query);
             pst.setInt(1, staffId);
             pst.setString(2, custName);
