@@ -12,6 +12,9 @@ import java.io.IOException;
 import java.util.HashMap;
 
 public class edit_staffController {
+    private int id;
+    private staffController sC;
+
     public TextField firstName;
     public TextField surname;
     public TextField salary;
@@ -21,7 +24,9 @@ public class edit_staffController {
     public Button cancel;
     public Button done;
 
-    private int id;
+    public void setSC(staffController sC) {
+        this.sC = sC;
+    }
 
     public void setID(int id) {
         this.id = id;
@@ -102,7 +107,8 @@ public class edit_staffController {
     }
 
     public void clickDone() throws IOException {
-//        Staff.
+        Staff.updateStaff(id, firstName.getText(), surname.getText(), Integer.parseInt(salary.getText()), position.getSelectionModel().getSelectedItem().getId(), status.getSelectionModel().getSelectedItem().getId());
+        sC.refreshTable();
         Stage stage = (Stage) done.getScene().getWindow();
         stage.close();
     }

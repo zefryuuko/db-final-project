@@ -186,6 +186,7 @@ public class staffController {
         edit_staffController e_sC = loader.getController();
         e_sC.setID(Integer.parseInt(table.getSelectionModel().getSelectedItem().getId()));
         e_sC.refreshBox();
+        e_sC.setSC(this);
         stage.setScene(new Scene(root));
         stage.show();
     }
