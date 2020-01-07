@@ -31,6 +31,32 @@ public class Inventory extends DBConnect {
         return true;
     }
 
+    public static int createItemReturnItemId(String itemName, String itemVendor, int itemType, int itemStored, int itemPrice, boolean itemSellable) {
+        int result = -1;
+        try {
+            String query = "INSERT INTO Item (item_name, item_vendor, item_type, item_stored, item_price, item_sellable) VALUES (?, ?, ?, ?, ?, ?)";
+            PreparedStatement pst = connection.prepareStatement(query);
+            pst.setString(1, itemName);
+            pst.setString(2, itemVendor);
+            pst.setInt(3, itemType);
+            pst.setInt(4, itemStored);
+            pst.setInt(5, itemPrice);
+            pst.setBoolean(6, itemSellable);
+            int affectedRows = pst.executeUpdate();
+            ResultSet generatedKeys = pst.getGeneratedKeys();
+            if (generatedKeys.next()) {
+                result = generatedKeys.getInt(1);
+            }
+
+            if (affectedRows == 0) return result;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return result;
+        }
+
+        return result;
+    }
+
     // READ
     public static ArrayList<HashMap<String, String>> getItems() {
         ArrayList<HashMap<String, String>> result = new ArrayList<>();
