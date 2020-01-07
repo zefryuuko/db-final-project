@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import ui.Main;
 
 import javax.xml.soap.Text;
 import java.io.IOException;
@@ -25,6 +26,7 @@ public class login_pageController {
                 Parent root = FXMLLoader.load(getClass().getResource("../home/home.fxml"));
                 Stage stage = (Stage) signIn.getScene().getWindow();
                 stage.setScene(new Scene(root));
+                Main.staffID = Integer.parseInt(idField.getText());
             } else {
                 new Alert(Alert.AlertType.ERROR, "Incorrect password").showAndWait();
             }
