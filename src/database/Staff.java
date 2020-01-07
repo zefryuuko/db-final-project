@@ -190,6 +190,23 @@ public class Staff extends DBConnect {
         return true;
     }
 
+    public static boolean updateStaffPosition(int positionId, String positionName) {
+        try {
+            String query = "UPDATE StaffPosition SET position_name = ? WHERE position_id = ?";
+            PreparedStatement pst = connection.prepareStatement(query);
+            pst.setString(1, positionName);
+            pst.setInt(2, positionId);
+            int affectedRows = pst.executeUpdate();
+
+            if (affectedRows == 0) return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
+    }
+
 
     public static boolean deleteStaff(int staffId) {
         try {
