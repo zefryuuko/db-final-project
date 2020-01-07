@@ -15,7 +15,7 @@ public class Sales extends DBConnect{
         ArrayList<HashMap<String, String>> result = new ArrayList<>();
 
         try {
-            String query = "SELECT s.sales_id, s.sales_datetime, s.staff_id, s.cust_name, i.staff_fname, i.staff_lname, t.type_name, SUM(m.item_price) FROM Sales s LEFT JOIN Staff i ON s.staff_id = i.staff_id LEFT JOIN SalesType t ON s.sales_type = t.type_id LEFT JOIN SalesDetails d ON s.sales_id = d.sales_id LEFT JOIN Item m on d.item_id = m.item_id GROUP BY sales_id;";
+            String query = "SELECT s.sales_id, s.sales_datetime, s.staff_id, s.cust_name, i.staff_fname, i.staff_lname, t.type_name, SUM(m.item_price) as total_sales FROM Sales s LEFT JOIN Staff i ON s.staff_id = i.staff_id LEFT JOIN SalesType t ON s.sales_type = t.type_id LEFT JOIN SalesDetails d ON s.sales_id = d.sales_id LEFT JOIN Item m on d.item_id = m.item_id GROUP BY sales_id;";
             PreparedStatement pst = connection.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
 
@@ -26,6 +26,7 @@ public class Sales extends DBConnect{
                 row.put("staff", Integer.toString(rs.getInt("staff_id")) + " - " + rs.getString("staff_fname") + " " + rs.getString("staff_lname"));
                 row.put("custName", rs.getString("cust_name"));
                 row.put("type", rs.getString("type_name"));
+                row.put("totalSales", rs.getString("total_sales"));
                 result.add(row);
             }
         } catch (Exception e) {
