@@ -15,7 +15,7 @@ public class Sales extends DBConnect{
         ArrayList<HashMap<String, String>> result = new ArrayList<>();
 
         try {
-            String query = "SELECT s.sales_id, s.sales_datetime, s.staff_id, s.cust_name, i.staff_fname, i.staff_lname, t.type_name FROM Sales s LEFT JOIN Staff i ON s.staff_id = i.staff_id LEFT JOIN SalesType t ON s.sales_type = t.type_id;";
+            String query = "SELECT s.sales_id, s.sales_datetime, s.staff_id, s.cust_name, i.staff_fname, i.staff_lname, t.type_name, SUM(m.item_price) FROM Sales s LEFT JOIN Staff i ON s.staff_id = i.staff_id LEFT JOIN SalesType t ON s.sales_type = t.type_id LEFT JOIN SalesDetails d ON s.sales_id = d.sales_id LEFT JOIN Item m on d.item_id = m.item_id GROUP BY sales_id;";
             PreparedStatement pst = connection.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
 
@@ -61,7 +61,39 @@ public class Sales extends DBConnect{
     }
 
     // UPDATE
+    public static boolean updateSales(int salesId, String custName, int salesType) {
+        try {
+            String query = "UPDATE Sales SET cust_name = ?, salesType = ? WHERE sales_id = ?";
+            PreparedStatement pst = connection.prepareStatement(query);
+            pst.setString(1, custName);
+            pst.setInt(2, salesType);
+            pst.setInt(3, salesId);
+            int affectedRows = pst.executeUpdate();
+
+            if (affectedRows == 0) return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
+    }
 
     // DELETE
+    public static boolean deleteSales(int salesId) {
+        try {
+            String query = "DELETE FROM Sales WHERE sales_id = ?";
+            PreparedStatement pst = connection.prepareStatement(query);
+            pst.setInt(1, salesId);
+            int affectedRows = pst.executeUpdate();
+
+            if (affectedRows == 0) return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
+    }
 
 }
