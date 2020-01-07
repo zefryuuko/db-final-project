@@ -17,12 +17,12 @@
             <Image url="@../Images/logo.jpeg" />
          </image>
       </ImageView>
-      <TextField layoutX="67.0" layoutY="124.0" prefHeight="31.0" prefWidth="202.0" promptText="Staff ID">
+      <TextField fx:id="staffID" layoutX="67.0" layoutY="124.0" prefHeight="31.0" prefWidth="202.0" promptText="Staff ID">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <TextField layoutX="336.0" layoutY="124.0" prefHeight="30.0" prefWidth="202.0" promptText="Customer Name">
+      <TextField fx:id="customerName" layoutX="336.0" layoutY="124.0" prefHeight="30.0" prefWidth="202.0" promptText="Customer Name">
          <font>
             <Font size="15.0" />
          </font>
@@ -37,19 +37,6 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
-      <TextField layoutX="336.0" layoutY="185.0" prefHeight="31.0" prefWidth="202.0" promptText="Total Sales">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </TextField>
-      <MenuButton layoutX="67.0" layoutY="188.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="202.0" text="Sales Type">
-        <items>
-          <MenuItem mnemonicParsing="false" text="Action 1" />
-          <MenuItem mnemonicParsing="false" text="Action 2" />
-        </items>
-         <font>
-            <Font size="15.0" />
-         </font>
-      </MenuButton>
+      <ComboBox fx:id="salesType" layoutX="67.0" layoutY="187.0" prefHeight="31.0" prefWidth="202.0" promptText="Sales Type" />
    </children>
 </Pane>

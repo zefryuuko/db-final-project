@@ -14,8 +14,10 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import ui.Main;
 import ui.delete_modalController;
+import ui.finances.financesController;
 import ui.history.historyController;
 import ui.inventory.inventoryController;
+import ui.sales.salesController;
 import ui.staff.position.positionController;
 
 import java.io.IOException;
@@ -140,7 +142,10 @@ public class staffController {
     }
 
     public void clickSales() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../sales/sales.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../sales/sales.fxml"));
+        Parent root = loader.load();
+        salesController sC = loader.getController();
+        sC.refreshTable();
         Stage stage = (Stage) sales.getScene().getWindow();
         stage.setTitle("Lokalisasi Bali - Sales");
         stage.setScene(new Scene(root));
@@ -167,7 +172,10 @@ public class staffController {
     }
 
     public void clickFinances() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../finances/finances.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../finances/finances.fxml"));
+        Parent root = loader.load();
+        financesController fC = loader.getController();
+        fC.refreshTable();
         Stage stage = (Stage) finances.getScene().getWindow();
         stage.setTitle("Lokalisasi Bali - Finances");
         stage.setScene(new Scene(root));

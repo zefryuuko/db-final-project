@@ -117,7 +117,7 @@ public class Sales extends DBConnect{
     // UPDATE
     public static boolean updateSales(int salesId, String custName, int salesType) {
         try {
-            String query = "UPDATE Sales SET cust_name = ?, salesType = ? WHERE sales_id = ?";
+            String query = "UPDATE Sales SET cust_name = ?, sales_type = ? WHERE sales_id = ?";
             PreparedStatement pst = connection.prepareStatement(query);
             pst.setString(1, custName);
             pst.setInt(2, salesType);

@@ -1,15 +1,33 @@
 package ui.finances;
 
+import database.Finance;
+import database.FinanceDetails;
+import database.IncomeAndExpense;
+import database.Purchase;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.stage.Stage;
+import ui.history.historyController;
 import ui.staff.staffController;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class financesController {
+    public TableView<theFinances> table;
+    public TableColumn<theFinances, String> date;
+    public TableColumn<theFinances, String> income;
+    public TableColumn<theFinances, String> expenses;
+    public TableView<theExpenses> table2;
+    public TableColumn<theExpenses, String> date2;
+    public TableColumn<theExpenses, String> detail;
+    public TableColumn<theExpenses, String> amount;
+
     public Button logout;
     public Button refresh;
     public Button staff;
@@ -19,6 +37,72 @@ public class financesController {
     public Button finances;
     public Button logistics;
 
+    public static class theFinances {
+        public String getDate() {
+            return date;
+        }
+
+        public int getIncome() {
+            return income;
+        }
+
+        public int getExpenses() {
+            return expenses;
+        }
+
+        public theFinances(String date, int income, int expenses) {
+            this.date = date;
+            this.income = income;
+            this.expenses = expenses;
+        }
+
+        private String date;
+        private int income, expenses;
+    }
+    public static class theExpenses {
+
+
+
+        private String date, detail, amount;
+
+        public String getDate() {
+            return date;
+        }
+
+        public String getDetail() {
+            return detail;
+        }
+
+        public String getAmount() {
+            return amount;
+        }
+
+        public theExpenses(String date, String detail, String amount) {
+            this.date = date;
+            this.detail = detail;
+            this.amount = amount;
+        }
+    }
+
+    public void refreshTable() {
+        table.getItems().clear();
+        ArrayList<IncomeAndExpense> query = Finance.getFinanceDetails();
+        for (int i = 0; i < query.size(); i++) {
+            IncomeAndExpense curr = query.get(i);
+            table.getItems().add(new theFinances(curr.getDate(), curr.getIncome(), curr.getExpenses()));
+        }
+    }
+
+    public void onClick() {
+        table2.getItems().clear();
+        System.out.println(table.getSelectionModel().getSelectedItem().getDate());
+        ArrayList<FinanceDetails> query2 = Finance.getFinanceDetailsByDate(table.getSelectionModel().getSelectedItem().getDate());
+        for (int i = 0; i < query2.size(); i++) {
+            FinanceDetails curr = query2.get(i);
+            table2.getItems().add(new theExpenses(curr.getDate(), curr.getDetails(), Integer.toString(curr.getAmount())));
+        }
+    }
+
     public void clickLogout() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../logout_modal.fxml"));
         Stage stage = new Stage();
@@ -27,7 +111,7 @@ public class financesController {
     }
 
     public void clickRefresh() throws IOException {
-
+        refreshTable();
     }
 
     public void clickStaff() throws IOException {
@@ -55,14 +139,14 @@ public class financesController {
     }
 
     public void clickHistory() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../history/history.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("history.fxml"));
         Stage stage = (Stage) history.getScene().getWindow();
         stage.setTitle("Lokalisasi Bali - History");
         stage.setScene(new Scene(root));
     }
 
     public void clickFinances() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("finances.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../finances/finances.fxml"));
         Stage stage = (Stage) finances.getScene().getWindow();
         stage.setTitle("Lokalisasi Bali - Finances");
         stage.setScene(new Scene(root));
