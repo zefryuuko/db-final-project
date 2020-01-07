@@ -35,8 +35,9 @@ public class Staff extends DBConnect {
         HashMap<String, String> result = new HashMap<>();
 
         try {
-            String query = "SELECT s.staff_id, s.staff_fname, s.staff_lname, s.staff_salary, p.position_name, t.status_name FROM Staff s LEFT JOIN StaffPosition p ON s.staff_position_id = p.position_id LEFT JOIN StaffStatus t ON s.staff_status_id = t.status_id;";
+            String query = "SELECT s.staff_id, s.staff_fname, s.staff_lname, s.staff_salary, p.position_name, t.status_name FROM Staff s LEFT JOIN StaffPosition p ON s.staff_position_id = p.position_id LEFT JOIN StaffStatus t ON s.staff_status_id = t.status_id WHERE staff_id = ?";
             PreparedStatement pst = connection.prepareStatement(query);
+            pst.setInt(1, staffId);
             ResultSet rs = pst.executeQuery();
 
             while (rs.next()) {
