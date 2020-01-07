@@ -126,13 +126,13 @@ public class Finance extends DBConnect{
         ArrayList<FinanceDetails> result = new ArrayList<>();
 
         try {
-            String query = "SELECT s.sales_id, DATE(s.sales_datetime) as date, SUM(i.item_price) as income FROM Sales s LEFT JOIN SalesDetails d ON s.sales_id = d.sales_id LEFT JOIN Item i ON d.item_id = i.item_id WHERE DATE(s.sales_datetime) = ? GROUP BY s.sales_id;";
+            String query = "SELECT DATE(s.sales_datetime) as date, SUM(i.item_price) as income FROM Sales s LEFT JOIN SalesDetails d ON s.sales_id = d.sales_id LEFT JOIN Item i ON d.item_id = i.item_id WHERE DATE(s.sales_datetime) = ? GROUP BY s.sales_id;";
             PreparedStatement pst = connection.prepareStatement(query);
             pst.setString(1, date);
             ResultSet rs = pst.executeQuery();
 
             while (rs.next()) {
-                result.add(new FinanceDetails(date, "Sales Income - ID:" + Integer.toString(rs.getInt("sales_id")), rs.getInt("income")));
+                result.add(new FinanceDetails(date, "Sales Income", rs.getInt("income")));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -167,13 +167,13 @@ public class Finance extends DBConnect{
         ArrayList<FinanceDetails> result = new ArrayList<>();
 
         try {
-            String query = "SELECT purchase_id, DATE(purchase_date) as date, SUM(purchase_price_total) as expenses FROM PurchaseHistory WHERE purchase_date = ? GROUP BY DATE(purchase_date);";
+            String query = "SELECT DATE(purchase_date) as date, SUM(purchase_price_total) as expenses FROM PurchaseHistory WHERE DATE(purchase_date) = ? GROUP BY DATE(purchase_date);";
             PreparedStatement pst = connection.prepareStatement(query);
             pst.setString(1, date);
             ResultSet rs = pst.executeQuery();
 
             while (rs.next()) {
-                result.add(new FinanceDetails(date, "Purchases Expense - ID:" + Integer.toString(rs.getInt("purchase_id")), rs.getInt("expenses")));
+                result.add(new FinanceDetails(date, "Purchases Expense", rs.getInt("expenses")));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -207,13 +207,13 @@ public class Finance extends DBConnect{
         ArrayList<FinanceDetails> result = new ArrayList<>();
 
         try {
-            String query = "SELECT payment_id, DATE(payment_date) as date, SUM(payment_amount) as expenses FROM SalaryPaymentHistory WHERE payment_date = ? GROUP BY DATE(payment_date);";
+            String query = "SELECT DATE(payment_date) as date, SUM(payment_amount) as expenses FROM SalaryPaymentHistory WHERE DATE(payment_date) = ? GROUP BY DATE(payment_date);";
             PreparedStatement pst = connection.prepareStatement(query);
             pst.setString(1, date);
             ResultSet rs = pst.executeQuery();
 
             while (rs.next()) {
-                result.add(new FinanceDetails(date, "Salary Expense - ID:" + Integer.toString(rs.getInt("payment_id")), rs.getInt("expenses")));
+                result.add(new FinanceDetails(date, "Salary Expense", rs.getInt("expenses")));
             }
         } catch (Exception e) {
             e.printStackTrace();
