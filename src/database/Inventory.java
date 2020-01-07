@@ -10,6 +10,26 @@ public class Inventory extends DBConnect {
     // -----
 
     // CREATE
+    public static boolean addItem(String itemName, String itemVendor, int itemType, int itemStored, int itemPrice, boolean itemSellable) {
+        try {
+            String query = "INSERT INTO Item (item_name, item_vendor, item_type, item_stored, item_price, item_sellable) VALUES (?, ?, ?, ?, ?, ?)";
+            PreparedStatement pst = connection.prepareStatement(query);
+            pst.setString(1, itemName);
+            pst.setString(2, itemVendor);
+            pst.setInt(3, itemType);
+            pst.setInt(4, itemStored);
+            pst.setInt(5, itemPrice);
+            pst.setBoolean(6, itemSellable);
+            int affectedRows = pst.executeUpdate();
+
+            if (affectedRows == 0) return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
+    }
 
     // READ
     public static ArrayList<HashMap<String, String>> getItems() {
@@ -65,6 +85,44 @@ public class Inventory extends DBConnect {
     }
 
     // UPDATE
+    public static boolean updateItem(int itemId, String itemName, String itemVendor, int itemType, int itemStored, int itemPrice, boolean itemSellable) {
+        try {
+            String query = "UPDATE Item SET item_name = ?, item_vendor = ?, item_type = ?, item_stored = ?, item_price = ?, item_sellable = ? WHERE item_id = ?";
+            PreparedStatement pst = connection.prepareStatement(query);
+            pst.setString(1, itemName);
+            pst.setString(2, itemVendor);
+            pst.setInt(3, itemType);
+            pst.setInt(4, itemStored);
+            pst.setInt(5, itemPrice);
+            pst.setBoolean(6, itemSellable);
+            pst.setInt(7, itemId);
+            int affectedRows = pst.executeUpdate();
+
+            if (affectedRows == 0) return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
+    }
+
+    public static boolean updateItemCount(int itemId, int itemAddCount) {
+        try {
+            String query = "UPDATE Item SET item_stored + ? WHERE item_id = ?";
+            PreparedStatement pst = connection.prepareStatement(query);
+            pst.setInt(1, itemAddCount);
+            pst.setInt(2, itemId);
+            int affectedRows = pst.executeUpdate();
+
+            if (affectedRows == 0) return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
+    }
 
     // DELETE
 
@@ -73,6 +131,21 @@ public class Inventory extends DBConnect {
     // ----------
 
     // CREATE
+    public static boolean addItemType(String typeName) {
+        try {
+            String query = "INSERT INTO ItemType (type_name) VALUES (?)";
+            PreparedStatement pst = connection.prepareStatement(query);
+            pst.setString(1, typeName);
+            int affectedRows = pst.executeUpdate();
+
+            if (affectedRows == 0) return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
+    }
 
     // READ
     public static ArrayList<HashMap<String, String>> getItemTypes() {
@@ -97,6 +170,22 @@ public class Inventory extends DBConnect {
     }
 
     // UPDATE
+    public static boolean updateItemType(int typeId, String typeName) {
+        try {
+            String query = "UPDATE ItemType SET type_name = ? WHERE item_id = ?";
+            PreparedStatement pst = connection.prepareStatement(query);
+            pst.setString(1, typeName);
+            pst.setInt(2, typeId);
+            int affectedRows = pst.executeUpdate();
+
+            if (affectedRows == 0) return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
+    }
 
     // DELETE
 }
