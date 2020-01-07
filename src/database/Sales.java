@@ -9,6 +9,23 @@ import java.util.HashMap;
 
 public class Sales extends DBConnect{
     // CREATE
+    public static boolean addSales(int staffId, String custName, int salesType) {
+        try {
+            String query = "INSERT INTO Sales (staff_id, cust_name, salesType) VALUES (?, ?, ?)";
+            PreparedStatement pst = connection.prepareStatement(query);
+            pst.setInt(1, staffId);
+            pst.setString(2, custName);
+            pst.setInt(3, salesType);
+            int affectedRows = pst.executeUpdate();
+
+            if (affectedRows == 0) return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
+    }
 
     // READ
     public static ArrayList<HashMap<String, String>> getSales() {
