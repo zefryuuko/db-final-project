@@ -24,7 +24,7 @@ public class add_staffController {
     public Button cancel;
     public Button addStaff;
 
-    public class Box {
+    public static class Box {
         private int id;
         private String name;
 

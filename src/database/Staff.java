@@ -75,8 +75,8 @@ public class Staff extends DBConnect {
         return result;
     }
 
-    public static String getStaffPosition(int staffId) {
-        String result = "";
+    public static int getStaffPosition(int staffId) {
+        int result = -1;
 
         try {
             String query = "SELECT staff_position_id FROM Staff WHERE staff_id = ?";
@@ -85,7 +85,7 @@ public class Staff extends DBConnect {
             ResultSet rs = pst.executeQuery();
 
             while (rs.next()) {
-                result = rs.getString("staff_position_id");
+                result = rs.getInt("staff_position_id");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -114,8 +114,8 @@ public class Staff extends DBConnect {
         return result;
     }
 
-    public static String getStaffStatus(int staffId) {
-        String result = "";
+    public static int getStaffStatus(int staffId) {
+        int result = -1;
 
         try {
             String query = "SELECT staff_status_id FROM Staff WHERE staff_id = ?";
@@ -124,7 +124,7 @@ public class Staff extends DBConnect {
             ResultSet rs = pst.executeQuery();
 
             while (rs.next()) {
-                result = rs.getString("staff_status_id");
+                result = rs.getInt("staff_status_id");
             }
         } catch (Exception e) {
             e.printStackTrace();

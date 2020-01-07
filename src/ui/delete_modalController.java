@@ -1,5 +1,7 @@
 package ui;
 
+import database.Staff;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import ui.finances.financesController;
@@ -12,8 +14,14 @@ import ui.inventory.inventoryController;
 import java.io.IOException;
 
 public class delete_modalController {
+    private int id;
+
     public Button cancel;
     public Button delete;
+
+    public void setID(int id) {
+        this.id = id;
+    }
 
     public void clickCancel() {
         Stage stage = (Stage) cancel.getScene().getWindow();
@@ -22,7 +30,7 @@ public class delete_modalController {
 
     public void clickDelete() throws IOException {
         if (Main.primaryStage.getTitle().equals("Lokalisasi Bali - Staff")) {
-            staffController sC = Main.loader.getController();
+            Staff.deleteStaff(id);
         }
         if (Main.primaryStage.getTitle().equals("Lokalisasi Bali - Sales")) {
             salesController sC = Main.loader.getController();
@@ -39,7 +47,6 @@ public class delete_modalController {
         if (Main.primaryStage.getTitle().equals("Lokalisasi Bali - Logistics")) {
             logisticsController lC = Main.loader.getController();
         }
-        // Do mysql stuff here.
         Stage stage = (Stage) delete.getScene().getWindow();
         stage.close();
     }
