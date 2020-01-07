@@ -111,6 +111,30 @@ public class Inventory extends DBConnect {
         return result;
     }
 
+    public static ArrayList<HashMap<String, String>> getSellableAndAvailable() {
+        ArrayList<HashMap<String, String>> result = new ArrayList<>();
+
+        try {
+            String query = "SELECT item_id, item_name, item_stored, item_price FROM Item LEFT JOIN ItemType t ON item_type = t.type_id WHERE item_sellable = TRUE AND item_stored > 0";
+            PreparedStatement pst = connection.prepareStatement(query);
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                HashMap<String, String> row = new HashMap<>();
+                row.put("id", Integer.toString(rs.getInt("item_id")));
+                row.put("name", rs.getString("item_name"));
+                row.put("stored", Integer.toString(rs.getInt("item_stored")));
+                row.put("price", Integer.toString(rs.getInt("item_price")));
+                result.add(row);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return result;
+        }
+
+        return result;
+    }
+
     // UPDATE
     public static boolean updateItem(int itemId, String itemName, String itemVendor, int itemType, int itemStored, int itemPrice, boolean itemSellable) {
         try {
