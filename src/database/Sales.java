@@ -41,7 +41,7 @@ public class Sales extends DBConnect{
                 String deductQuery = "UPDATE Item SET item_count = item_count - 1 WHERE item_id = ?";
                 PreparedStatement pstd = connection.prepareStatement(deductQuery);
                 pstd.setInt(1, item_id);
-                pstd.executeUpdate()
+                pstd.executeUpdate();
             }
         } catch (Exception e) {
             e.printStackTrace();
