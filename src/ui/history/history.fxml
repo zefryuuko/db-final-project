@@ -128,16 +128,16 @@
                   <Font name="Segoe UI" size="25.0" />
                </font>
             </Text>
-            <TableView layoutX="49.0" layoutY="71.0" prefHeight="400.0" prefWidth="1000.0">
+            <TableView fx:id="table" layoutX="49.0" layoutY="71.0" prefHeight="400.0" prefWidth="1000.0">
               <columns>
-                <TableColumn prefWidth="100.0" text="ID" />
-                <TableColumn prefWidth="100.0" text="Date" />
-                  <TableColumn prefWidth="100.0" text="Type" />
-                  <TableColumn prefWidth="150.0" text="Name" />
-                  <TableColumn prefWidth="125.0" text="Vendor" />
-                  <TableColumn prefWidth="125.0" text="Staff ID" />
-                  <TableColumn prefWidth="150.0" text="Purchase Cost" />
-                  <TableColumn prefWidth="150.0" text="Buy Count" />
+                <TableColumn fx:id="id" prefWidth="100.0" text="ID" />
+                <TableColumn fx:id="date" prefWidth="100.0" text="Date" />
+                  <TableColumn fx:id="type" prefWidth="100.0" text="Type" />
+                  <TableColumn fx:id="name" prefWidth="150.0" text="Name" />
+                  <TableColumn fx:id="vendor" prefWidth="125.0" text="Vendor" />
+                  <TableColumn fx:id="staffID" prefWidth="125.0" text="Staff ID" />
+                  <TableColumn fx:id="purchaseCost" prefWidth="150.0" text="Purchase Cost" />
+                  <TableColumn fx:id="buyCount" prefWidth="150.0" text="Buy Count" />
               </columns>
             </TableView>
             <Button fx:id="refresh" layoutX="948.0" layoutY="24.0" mnemonicParsing="false" onAction="#clickRefresh" prefHeight="39.0" prefWidth="101.0" style="-fx-background-color: #FFFFFF;" text="REFRESH">

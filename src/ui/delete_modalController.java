@@ -1,5 +1,6 @@
 package ui;
 
+import database.Inventory;
 import database.Staff;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -15,10 +16,16 @@ import java.io.IOException;
 
 public class delete_modalController {
     private int id;
-    private staffController sC;
 
     public Button cancel;
     public Button delete;
+
+    private staffController sC;
+    private inventoryController iC;
+
+    public void setIC(inventoryController iC) {
+        this.iC = iC;
+    }
 
     public void setSC(staffController sC) {
         this.sC = sC;
@@ -36,12 +43,14 @@ public class delete_modalController {
     public void clickDelete() throws IOException {
         if (Main.primaryStage.getTitle().equals("Lokalisasi Bali - Staff")) {
             Staff.deleteStaff(id);
+            sC.refreshTable();
         }
         if (Main.primaryStage.getTitle().equals("Lokalisasi Bali - Sales")) {
-            salesController sC = Main.loader.getController();
+
         }
         if (Main.primaryStage.getTitle().equals("Lokalisasi Bali - Inventory")) {
-            inventoryController iC = Main.loader.getController();
+            Inventory.deleteItem(id);
+            iC.refreshTable();
         }
         if (Main.primaryStage.getTitle().equals("Lokalisasi Bali - History")) {
             historyController hC = Main.loader.getController();
@@ -52,7 +61,6 @@ public class delete_modalController {
         if (Main.primaryStage.getTitle().equals("Lokalisasi Bali - Logistics")) {
             logisticsController lC = Main.loader.getController();
         }
-        sC.refreshTable();
         Stage stage = (Stage) delete.getScene().getWindow();
         stage.close();
     }

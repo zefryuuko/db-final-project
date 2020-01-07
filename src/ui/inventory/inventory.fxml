@@ -180,7 +180,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Button>
-            <Button fx:id="addItem1" layoutX="239.0" layoutY="524.0" mnemonicParsing="false" onAction="#clickAddItem" prefHeight="39.0" prefWidth="166.0" style="-fx-background-color: #FFFFFF;" text="NEW ITEM">
+            <Button fx:id="newItem" layoutX="239.0" layoutY="524.0" mnemonicParsing="false" onAction="#clickNewItem" prefHeight="39.0" prefWidth="166.0" style="-fx-background-color: #FFFFFF;" text="NEW ITEM">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>

@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.inventory.add_itemController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.inventory.add_itemController">
    <children>
       <Text layoutX="240.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ADD ITEM">
          <font>
@@ -20,7 +17,7 @@
             <Image url="@../Images/logo.jpeg" />
          </image>
       </ImageView>
-      <TextField disable="true" layoutX="67.0" layoutY="124.0" prefHeight="31.0" prefWidth="471.0" promptText="Name">
+      <TextField fx:id="name" disable="true" layoutX="67.0" layoutY="124.0" prefHeight="31.0" prefWidth="471.0" promptText="Name">
          <font>
             <Font size="15.0" />
          </font>
@@ -35,12 +32,12 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
-      <TextField layoutX="67.0" layoutY="185.0" prefHeight="31.0" prefWidth="202.0" promptText="Purschase Cost">
+      <TextField fx:id="purchaseCost" layoutX="67.0" layoutY="185.0" prefHeight="31.0" prefWidth="202.0" promptText="Purschase Cost">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <TextField layoutX="336.0" layoutY="185.0" prefHeight="31.0" prefWidth="202.0" promptText="Buy Count">
+      <TextField fx:id="buyCount" layoutX="336.0" layoutY="185.0" prefHeight="31.0" prefWidth="202.0" promptText="Buy Count">
          <font>
             <Font size="15.0" />
          </font>

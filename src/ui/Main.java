@@ -13,7 +13,7 @@ public class Main extends Application {
     public static Stage primaryStage;
     public static FXMLLoader loader;
 
-    public static int staffID;
+    public static int staffID = 1;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
