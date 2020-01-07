@@ -130,31 +130,19 @@
    <center>
       <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #2b2b2b;" BorderPane.alignment="CENTER">
          <children>
-            <Text fill="WHITE" layoutX="49.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="STAFF DETAILS">
+            <Text fill="WHITE" layoutX="49.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="POSITION">
                <font>
                   <Font name="Segoe UI" size="25.0" />
                </font>
             </Text>
             <TableView fx:id="table" layoutX="49.0" layoutY="71.0" prefHeight="400.0" prefWidth="1000.0" style="-fx-background-color: white;">
               <columns>
-                <TableColumn fx:id="staffID" prefWidth="110.0" text="Staff ID">
+                <TableColumn fx:id="staffID" prefWidth="300.0" text="ID">
                    <cellValueFactory><PropertyValueFactory property="id" /></cellValueFactory>
                 </TableColumn>
-                <TableColumn fx:id="firstName" prefWidth="200.0" text="First Name">
+                <TableColumn fx:id="firstName" prefWidth="700.0" text="Position Name">
                    <cellValueFactory><PropertyValueFactory property="firstName" /></cellValueFactory>
                 </TableColumn>
-                  <TableColumn fx:id="surname" prefWidth="200.0" text="Surname">
-                     <cellValueFactory><PropertyValueFactory property="surname" /></cellValueFactory>
-                  </TableColumn>
-                  <TableColumn fx:id="salary" prefWidth="150.0" text="Salary">
-                     <cellValueFactory><PropertyValueFactory property="salary" /></cellValueFactory>
-                  </TableColumn>
-                  <TableColumn fx:id="position" minWidth="0.0" prefWidth="134.0" text="Position">
-                     <cellValueFactory><PropertyValueFactory property="position" /></cellValueFactory>
-                  </TableColumn>
-                  <TableColumn fx:id="status" minWidth="0.0" prefWidth="205.0" text="Status">
-                     <cellValueFactory><PropertyValueFactory property="status" /></cellValueFactory>
-                  </TableColumn>
               </columns>
             </TableView>
             <Button fx:id="delete" layoutX="941.0" layoutY="524.0" mnemonicParsing="false" onAction="#clickDelete" prefHeight="39.0" prefWidth="108.0" style="-fx-background-color: #f22424;" text="DELETE">
@@ -162,7 +150,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Button>
-            <Button fx:id="addStaff" layoutX="49.0" layoutY="524.0" mnemonicParsing="false" onAction="#clickAddStaff" prefHeight="39.0" prefWidth="166.0" style="-fx-background-color: #FFFFFF;" text="ADD STAFF">
+            <Button fx:id="addStaff" layoutX="49.0" layoutY="524.0" mnemonicParsing="false" onAction="#clickAddStaff" prefHeight="39.0" prefWidth="166.0" style="-fx-background-color: #FFFFFF;" text="ADD POSITION">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -173,11 +161,6 @@
                </font>
             </Button>
             <Button fx:id="refresh" layoutX="948.0" layoutY="24.0" mnemonicParsing="false" onAction="#clickRefresh" prefHeight="39.0" prefWidth="101.0" style="-fx-background-color: #FFFFFF;" text="REFRESH">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Button>
-            <Button fx:id="addStaff1" layoutX="239.0" layoutY="524.0" mnemonicParsing="false" onAction="#clickAddStaff" prefHeight="39.0" prefWidth="166.0" style="-fx-background-color: #FFFFFF;" text="POSITION">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
