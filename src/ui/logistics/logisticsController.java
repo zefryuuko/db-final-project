@@ -5,6 +5,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import ui.staff.staffController;
 
 import java.io.IOException;
 
@@ -33,7 +34,10 @@ public class logisticsController {
     }
 
     public void clickStaff() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../staff/staff.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../staff/staff.fxml"));
+        Parent root = loader.load();
+        staffController sC = loader.getController();
+        sC.refreshTable();
         Stage stage = (Stage) staff.getScene().getWindow();
         stage.setTitle("Lokalisasi Bali - Staff");
         stage.setScene(new Scene(root));
