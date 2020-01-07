@@ -36,6 +36,13 @@ public class Sales extends DBConnect{
             int affectedRows = pst.executeUpdate();
 
             if (affectedRows == 0) return false;
+            else {
+                // Deduct item on stock by one
+                String deductQuery = "UPDATE Item SET item_count = item_count - 1 WHERE item_id = ?";
+                PreparedStatement pstd = connection.prepareStatement(deductQuery);
+                pstd.setInt(1, item_id);
+                pstd.executeUpdate()
+            }
         } catch (Exception e) {
             e.printStackTrace();
             return false;
