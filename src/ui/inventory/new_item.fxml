@@ -53,10 +53,15 @@
          </font>
       </TextField>
       <ComboBox fx:id="type" layoutX="67.0" layoutY="124.0" prefHeight="31.0" prefWidth="202.0" promptText="Type" />
-      <CheckBox layoutX="67.0" layoutY="299.0" mnemonicParsing="false" text="Sell-able">
+      <CheckBox fx:id="sellable" layoutX="67.0" layoutY="299.0" mnemonicParsing="false" text="Sell-able">
          <font>
             <Font size="15.0" />
          </font>
       </CheckBox>
+      <TextField fx:id="sellPrice" layoutX="336.0" layoutY="304.0" prefHeight="31.0" prefWidth="202.0" promptText="Sell Price">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
    </children>
 </Pane>

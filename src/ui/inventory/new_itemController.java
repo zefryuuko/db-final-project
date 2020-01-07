@@ -27,6 +27,7 @@ public class new_itemController {
     public TextField vendor;
     public TextField purchaseCost;
     public TextField buyCount;
+    public TextField sellPrice;
     public CheckBox sellable;
 
     public Button cancel;
@@ -73,7 +74,7 @@ public class new_itemController {
     }
 
     public void clickDone() throws IOException {
-        Purchase.addExistingItemPurchase(id, Main.staffID, Integer.parseInt(buyCount.getText()), Integer.parseInt(purchaseCost.getText()));
+        Purchase.addNewItemPurchase(name.getText(), vendor.getText(), type.getSelectionModel().getSelectedItem().id, Integer.parseInt(stored.getText()), Integer.parseInt(sellPrice.getText()), sellable.isSelected(), Main.staffID, Integer.parseInt(buyCount.getText()), Integer.parseInt(purchaseCost.getText()));
         iC.refreshTable();
         Stage stage = (Stage) done.getScene().getWindow();
         stage.close();
