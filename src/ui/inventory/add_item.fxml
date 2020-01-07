@@ -26,7 +26,7 @@
             <Font size="15.0" />
          </font>
       </TextField>
-      <Button fx:id="done" layoutX="372.0" layoutY="357.0" mnemonicParsing="false" onAction="#clickDone" prefHeight="30.0" prefWidth="166.0" style="-fx-background-color: #000000;" text="DONE" textFill="WHITE">
+      <Button fx:id="done" layoutX="372.0" layoutY="357.0" mnemonicParsing="false" onAction="#clickDone" prefHeight="30.0" prefWidth="166.0" style="-fx-background-color: #000000;" text="ADD ITEM" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
