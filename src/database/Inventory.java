@@ -49,6 +49,7 @@ public class Inventory extends DBConnect {
                 row.put("stored", Integer.toString(rs.getInt("item_stored")));
                 row.put("price", Integer.toString(rs.getInt("item_price")));
                 row.put("sellable", Boolean.toString(rs.getBoolean("item_sellable")));
+                result.add(row);
             }
         } catch (Exception e) {
             e.printStackTrace();
