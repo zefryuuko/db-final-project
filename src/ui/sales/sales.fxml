@@ -135,7 +135,7 @@
                    <cellValueFactory><PropertyValueFactory property="id" /></cellValueFactory>
                 </TableColumn>
                 <TableColumn fx:id="date" prefWidth="90.0" text="Date">
-                   <cellValueFactory><PropertyValueFactory property="date" /></cellValueFactory>
+                   <cellValueFactory><PropertyValueFactory property="dates" /></cellValueFactory>
                 </TableColumn>
                   <TableColumn fx:id="staffID" prefWidth="90.0" text="Staff ID">
                      <cellValueFactory><PropertyValueFactory property="staffID" /></cellValueFactory>

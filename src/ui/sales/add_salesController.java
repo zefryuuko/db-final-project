@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import ui.Main;
 import ui.staff.add_staffController;
 
 import java.io.IOException;
@@ -63,5 +64,6 @@ public class add_salesController {
             obs.add(new Box(key, posList.get(key)));
         }
         salesType.setItems(obs);
+        staffID.setText(Integer.toString(Main.staffID));
     }
 }

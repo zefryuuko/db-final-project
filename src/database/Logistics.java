@@ -9,7 +9,7 @@ public class Logistics extends DBConnect {
     // CREATE
     public static boolean createLogisticsEntry(int staffId, int salesId, String custAddress, int providerId, int trackingNumber) {
         try {
-            String query = "INSERT INTO Logistics (staff_id, sales_id, cust_address, provider_id, trackingNumber, date_sent) VALUES (?, ?, ?, ?, ?, NOW())";
+            String query = "INSERT INTO Logistics (staff_id, sales_id, cust_address, logistic_provider, tracking_number, date_sent) VALUES (?, ?, ?, ?, ?, NOW())";
             PreparedStatement pst = connection.prepareStatement(query);
             pst.setInt(1, staffId);
             pst.setInt(2, salesId);
@@ -104,13 +104,12 @@ public class Logistics extends DBConnect {
             query = query.substring(0, query.length() - 1);
             query += ")";
             PreparedStatement pst = connection.prepareStatement(query);
-            System.out.println(linkedIds);
             for (int i = 0; i < linkedIds.size(); i++) pst.setInt(i + 1, linkedIds.get(i));
             ResultSet rs = pst.executeQuery();
 
             while (rs.next()) {
                 HashMap<String, String> row = new HashMap<>();
-                row.put("id", Integer.toString(rs.getInt("staff_id")));
+                row.put("id", Integer.toString(rs.getInt("sales_id")));
                 row.put("info", "Sales " + Integer.toString(rs.getInt("sales_id")) + " - "
                         + rs.getString("cust_name"));
                 result.add(row);
@@ -143,16 +142,15 @@ public class Logistics extends DBConnect {
     }
 
     // UPDATE
-    public static boolean updateLogisticsEntry(int logisticsId, int staffId, int salesId, String custAddress, int providerId, int trackingNumber) {
+    public static boolean updateLogisticsEntry(int logisticsId, int staffId, String custAddress, int providerId, int trackingNumber) {
         try {
-            String query = "UPDATE Logistics SET staff_id = ?, sales_id = ?, cust_address = ?, provider_id = ?, trackingNumber = ? WHERE logistics_id = ?";
+            String query = "UPDATE Logistics SET staff_id = ?, cust_address = ?, provider_id = ?, tracking_number = ? WHERE logistic_id = ?";
             PreparedStatement pst = connection.prepareStatement(query);
             pst.setInt(1, staffId);
-            pst.setInt(2, salesId);
-            pst.setString(3, custAddress);
-            pst.setInt(4, providerId);
-            pst.setInt(5, trackingNumber);
-            pst.setInt(6, logisticsId);
+            pst.setString(2, custAddress);
+            pst.setInt(3, providerId);
+            pst.setInt(4, trackingNumber);
+            pst.setInt(5, logisticsId);
             int affectedRows = pst.executeUpdate();
 
             if (affectedRows == 0) return false;

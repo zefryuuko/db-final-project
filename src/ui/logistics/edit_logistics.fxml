@@ -17,12 +17,7 @@
             <Image url="@../Images/logo.jpeg" />
          </image>
       </ImageView>
-      <TextField layoutX="65.0" layoutY="129.0" prefHeight="31.0" prefWidth="202.0" promptText="Staff ID">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </TextField>
-      <TextField layoutX="334.0" layoutY="129.0" prefHeight="30.0" prefWidth="202.0" promptText="Customer Name">
+      <TextField fx:id="staffID" editable="false" layoutX="65.0" layoutY="129.0" prefHeight="31.0" prefWidth="202.0" promptText="Staff ID">
          <font>
             <Font size="15.0" />
          </font>
@@ -37,20 +32,16 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
-      <TextField layoutX="334.0" layoutY="186.0" prefHeight="31.0" prefWidth="202.0" promptText="Logistics Provider">
+      <TextField fx:id="trackingNumber" layoutX="65.0" layoutY="186.0" prefHeight="31.0" prefWidth="202.0" promptText="Tracking Number">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <TextField layoutX="65.0" layoutY="241.0" prefHeight="31.0" prefWidth="202.0" promptText="Tracking Number">
+      <TextField fx:id="customerAddress" layoutX="334.0" layoutY="129.0" prefHeight="31.0" prefWidth="202.0" promptText="Customer Address">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <TextField layoutX="65.0" layoutY="186.0" prefHeight="31.0" prefWidth="202.0" promptText="Customer Address">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </TextField>
+      <ComboBox fx:id="logisticsProvider" layoutX="334.0" layoutY="187.0" prefHeight="31.0" prefWidth="202.0" promptText="Logistics Provider" />
    </children>
 </Pane>

@@ -1,6 +1,7 @@
 package ui;
 
 import database.Inventory;
+import database.Logistics;
 import database.Sales;
 import database.Staff;
 import javafx.fxml.FXMLLoader;
@@ -25,6 +26,11 @@ public class delete_modalController {
     private staffController sC;
     private inventoryController iC;
     private positionController pC;
+    private logisticsController lC;
+
+    public void setLC(logisticsController lC) {
+        this.lC = lC;
+    }
 
     public void setSaC(salesController saC) {
         this.saC = saC;
@@ -73,7 +79,8 @@ public class delete_modalController {
 //
 //        }
         if (Main.primaryStage.getTitle().equals("Lokalisasi Bali - Logistics")) {
-            logisticsController lC = Main.loader.getController();
+            Logistics.deleteLogisticsEntry(id);
+            lC.refreshTable();
         }
         if (Main.primaryStage.getTitle().equals("Lokalisasi Bali - Position")) {
             Staff.deletePosition(id);

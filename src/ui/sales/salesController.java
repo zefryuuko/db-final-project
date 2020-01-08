@@ -253,7 +253,8 @@ public class salesController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../sales/add_item_sales.fxml"));
         Parent root = loader.load();
         add_item_salesController a_i_sC = loader.getController();
-        a_i_sC.refreshBox();
+        a_i_sC.setPrimaryID(Integer.parseInt(table.getSelectionModel().getSelectedItem().getId()));
+        a_i_sC.refreshTable();
         a_i_sC.setSC(this);
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
