@@ -171,6 +171,11 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Button>
+            <Button fx:id="showUnpaid" layoutX="789.0" layoutY="24.0" mnemonicParsing="false" onAction="#showUnpaid" prefHeight="39.0" prefWidth="152.0" style="-fx-background-color: #FFFFFF;" text="SHOW UNPAID">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Button>
             <Button fx:id="addPosition" layoutX="239.0" layoutY="524.0" mnemonicParsing="false" onAction="#clickPosition" prefHeight="39.0" prefWidth="166.0" style="-fx-background-color: #FFFFFF;" text="POSITION">
                <font>
                   <Font name="System Bold" size="18.0" />

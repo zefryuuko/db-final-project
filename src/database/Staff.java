@@ -31,6 +31,51 @@ public class Staff extends DBConnect {
         return result;
     }
 
+    public static ArrayList<HashMap<String, String>> getUnpaidStaffs() {
+        ArrayList<HashMap<String, String>> result = new ArrayList<>();
+        ArrayList<Integer> paidIds = new ArrayList<>();
+
+        try {
+            String query = "SELECT staff_id FROM SalaryPaymentHistory WHERE MONTH(payment_date) = MONTH(NOW())";
+            PreparedStatement pst = connection.prepareStatement(query);
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                paidIds.add(rs.getInt("staff_id"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return result;
+        }
+
+        try {
+            String query = "SELECT s.staff_id, s.staff_fname, s.staff_lname, s.staff_salary, p.position_name, t.status_name FROM Staff s LEFT JOIN StaffPosition p ON s.staff_position_id = p.position_id LEFT JOIN StaffStatus t ON s.staff_status_id = t.status_id WHERE staff_id NOT IN (";
+            for (int id : paidIds) query += "?,";
+            query = query.substring(0, query.length() - 1);
+            query += ")";
+            PreparedStatement pst = connection.prepareStatement(query);
+            System.out.println(paidIds);
+            for (int i = 0; i < paidIds.size(); i++) pst.setInt(i + 1, paidIds.get(i));
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                HashMap<String, String> row = new HashMap<>();
+                row.put("id", Integer.toString(rs.getInt("staff_id")));
+                row.put("firstName", rs.getString("staff_fname"));
+                row.put("lastName", rs.getString("staff_lname"));
+                row.put("salary", Integer.toString(rs.getInt("staff_salary")));
+                row.put("position", rs.getString("position_name"));
+                row.put("status", rs.getString("status_name"));
+                result.add(row);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return result;
+        }
+
+        return result;
+    }
+
     public static HashMap<String, String> getStaff(int staffId) {
         HashMap<String, String> result = new HashMap<>();
 
@@ -231,6 +276,42 @@ public class Staff extends DBConnect {
             String query = "DELETE FROM StaffPosition WHERE position_id = ?";
             PreparedStatement pst = connection.prepareStatement(query);
             pst.setInt(1, positionId);
+            int affectedRows = pst.executeUpdate();
+
+            if (affectedRows == 0) return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
+    }
+
+    public static boolean isStaffPaid(int staffId) {
+        try {
+            // Check if selected staff is paid already this month
+            String checkPaymentStatusQuery = "SELECT * FROM SalaryPaymentHistory WHERE MONTH(payment_date) = MONTH(NOW()) AND staff_id = ?;";
+            PreparedStatement checkPaymentStatusHistoryPst = connection.prepareStatement(checkPaymentStatusQuery);
+            checkPaymentStatusHistoryPst.setInt(1, staffId);
+            ResultSet checkPaymentStatusRs = checkPaymentStatusHistoryPst.executeQuery();
+
+            while (checkPaymentStatusRs.next()) return true;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        return false;
+    }
+
+    public static boolean payStaff(int staffId) {
+        HashMap<String, String> staffInfo = Staff.getStaff(staffId);
+        try {
+            String query = "INSERT INTO SalaryPaymentHistory (staff_id, payment_amount, payment_date) VALUES (?, ?, NOW())";
+            PreparedStatement pst = connection.prepareStatement(query);
+            pst.setInt(1, staffId);
+            pst.setInt(2, Integer.parseInt(staffInfo.get("salary")));
             int affectedRows = pst.executeUpdate();
 
             if (affectedRows == 0) return false;

@@ -6,9 +6,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -17,12 +15,14 @@ import ui.delete_modalController;
 import ui.finances.financesController;
 import ui.history.historyController;
 import ui.inventory.inventoryController;
+import ui.logistics.logisticsController;
 import ui.sales.salesController;
 import ui.staff.position.positionController;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Optional;
 
 public class staffController {
     public TableView<theStaff> table;
@@ -121,6 +121,41 @@ public class staffController {
         }
     }
 
+    public void showUnpaid() {
+        table.getItems().clear();
+        ArrayList<HashMap<String, String>> query = Staff.getUnpaidStaffs();
+        for (int i = 0; i < query.size(); i++) {
+            String id = null, firstName = null, surname = null, salary = null, position = null, status = null;
+            int row = 0;
+            for (String value : query.get(i).values()) {
+                switch (row) {
+                    case 0:
+                        firstName = value;
+                        break;
+                    case 1:
+                        surname = value;
+                        break;
+                    case 2:
+                        id = value;
+                        break;
+                    case 3:
+                        position = value;
+                        break;
+                    case 4:
+                        salary = value;
+                        break;
+                    case 5:
+                        status = value;
+                        break;
+                    default:
+                        break;
+                }
+                row++;
+            }
+            table.getItems().add(new theStaff(id, firstName, surname, salary, position, status));
+        }
+    }
+
     public void clickLogout() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../logout_modal.fxml"));
         stage.setScene(new Scene(root));
@@ -182,7 +217,10 @@ public class staffController {
     }
 
     public void clickLogistics() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../logistics/logistics.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../logistics/logistics.fxml"));
+        Parent root = loader.load();
+        logisticsController lC = loader.getController();
+        lC.refreshTable();
         Stage stage = (Stage) logistics.getScene().getWindow();
         stage.setTitle("Lokalisasi Bali - Logistics");
         stage.setScene(new Scene(root));
@@ -209,7 +247,21 @@ public class staffController {
     }
 
     public void clickPay() {
-
+        if (Staff.isStaffPaid(Integer.parseInt(table.getSelectionModel().getSelectedItem().getId()))) {
+            new Alert(Alert.AlertType.INFORMATION, "The selected staff is already paid this month").showAndWait();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to pay the salary for "
+                    + table.getSelectionModel().getSelectedItem().getId()
+                    + " - " + table.getSelectionModel().getSelectedItem().getFirstName()
+                    + " " + table.getSelectionModel().getSelectedItem().getSurname()
+                    + " for " + table.getSelectionModel().getSelectedItem().getSalary() + "?");
+            Optional<ButtonType> choice = alert.showAndWait();
+            if (choice.get() == ButtonType.OK) {
+                Staff.payStaff(Integer.parseInt(table.getSelectionModel().getSelectedItem().getId()));
+                new Alert(Alert.AlertType.INFORMATION, "Payment recorded.").showAndWait();
+                refreshTable();
+            }
+        }
     }
 
     public void clickEdit() throws IOException {
