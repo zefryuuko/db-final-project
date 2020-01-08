@@ -55,6 +55,48 @@ public class Logistics extends DBConnect {
         return result;
     }
 
+    public static ArrayList<HashMap<String, String>> getBillsWithoutLinkedLogistics() {
+        ArrayList<HashMap<String, String>> result = new ArrayList<>();
+        ArrayList<Integer> linkedIds = new ArrayList<>();
+
+        try {
+            String query = "SELECT sales_id FROM SalaryPaymentHistory";
+            PreparedStatement pst = connection.prepareStatement(query);
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                linkedIds.add(rs.getInt("sales_id"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return result;
+        }
+
+        try {
+            String query = "SELECT sales_id, cust_name FROM Sales WHERE sales_type = 2 AND sales_id NOT IN (";
+            for (int id : linkedIds) query += "?,";
+            query = query.substring(0, query.length() - 1);
+            query += ")";
+            PreparedStatement pst = connection.prepareStatement(query);
+            System.out.println(linkedIds);
+            for (int i = 0; i < linkedIds.size(); i++) pst.setInt(i + 1, linkedIds.get(i));
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                HashMap<String, String> row = new HashMap<>();
+                row.put("id", Integer.toString(rs.getInt("staff_id")));
+                row.put("info", "Sales " + Integer.toString(rs.getInt("sales_id")) + " - "
+                        + rs.getString("cust_name"));
+                result.add(row);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return result;
+        }
+
+        return result;
+    }
+
     // UPDATE
     public static boolean updateLogisticsEntry(int logisticsId, int staffId, int salesId, String custAddress, int providerId, int trackingNumber) {
         try {
