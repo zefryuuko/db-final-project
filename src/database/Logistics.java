@@ -55,6 +55,32 @@ public class Logistics extends DBConnect {
         return result;
     }
 
+    public static HashMap<String, String> getLogisticsDetailsById(int logisticId) {
+        HashMap<String, String> result = new HashMap<>();
+
+        try {
+            String query = "SELECT l.logistic_id, l.staff_id, s.cust_name, l.cust_address, p.provider_name, l.tracking_number, l.date_sent FROM Logistics l LEFT JOIN Sales s ON s.sales_id = l.sales_id LEFT JOIN LogisticsProvider p ON p.provider_id = l.logistic_provider WHERE l.logistic_id = ?;";
+            PreparedStatement pst = connection.prepareStatement(query);
+            pst.setInt(1, logisticId);
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                result.put("id", Integer.toString(rs.getInt("logistic_id")));
+                result.put("staffId", Integer.toString(rs.getInt("staff_id")));
+                result.put("custName", rs.getString("cust_name"));
+                result.put("custAddress", rs.getString("cust_address"));
+                result.put("providerName", rs.getString("provider_name"));
+                result.put("trackingNumber", Integer.toString(rs.getInt("tracking_number")));
+                result.put("dateSent", rs.getDate("date_sent").toString());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return result;
+        }
+
+        return result;
+    }
+
     public static ArrayList<HashMap<String, String>> getBillsWithoutLinkedLogistics() {
         ArrayList<HashMap<String, String>> result = new ArrayList<>();
         ArrayList<Integer> linkedIds = new ArrayList<>();
