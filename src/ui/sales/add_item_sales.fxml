@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
@@ -29,9 +30,18 @@
       </Button>
       <TableView fx:id="table" layoutX="71.0" layoutY="113.0" prefHeight="200.0" prefWidth="450.0">
         <columns>
-          <TableColumn fx:id="itemName" prefWidth="150.0" text="Item Name" />
-          <TableColumn fx:id="itemPrice" prefWidth="150.0" text="Item Price" />
-            <TableColumn fx:id="itemCount" prefWidth="150.0" text="Item Count" />
+          <TableColumn fx:id="itemName" prefWidth="150.0" text="Item Name">
+             <cellValueFactory><PropertyValueFactory property="itemName" /></cellValueFactory>
+          </TableColumn>
+          <TableColumn fx:id="itemPrice" prefWidth="150.0" text="Item Price">
+             <cellValueFactory><PropertyValueFactory property="itemPrice" /></cellValueFactory>
+          </TableColumn>
+            <TableColumn fx:id="itemCount" prefWidth="150.0" text="Item Count">
+               <cellValueFactory><PropertyValueFactory property="itemCount" /></cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="id" prefWidth="75.0" text="ID">
+               <cellValueFactory><PropertyValueFactory property="id" /></cellValueFactory>
+            </TableColumn>
         </columns>
       </TableView>
    </children>

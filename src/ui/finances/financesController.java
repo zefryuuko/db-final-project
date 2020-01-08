@@ -62,8 +62,8 @@ public class financesController {
         private String date;
         private int income, expenses;
     }
-    public static class theExpenses {
 
+    public static class theExpenses {
 
 
         private String date, detail, amount;

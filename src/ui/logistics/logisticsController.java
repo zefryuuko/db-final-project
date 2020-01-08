@@ -139,7 +139,7 @@ public class logisticsController {
     }
 
     public void clickStaff() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("staff.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../staff/staff.fxml"));
         Parent root = loader.load();
         staffController sC = loader.getController();
         sC.refreshTable();
@@ -202,8 +202,8 @@ public class logisticsController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../logistics/add_logistics.fxml"));
         Parent root = loader.load();
         add_logisticsController a_sC = loader.getController();
-//        a_sC.refreshBox();
-//        a_sC.setSC(this);
+        a_sC.refreshBox();
+        a_sC.setLC(this);
         stage.setScene(new Scene(root));
         stage.show();
     }
@@ -211,10 +211,10 @@ public class logisticsController {
     public void clickEdit() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../logistics/edit_logistics.fxml"));
         Parent root = loader.load();
-        edit_staffController e_sC = loader.getController();
-        e_sC.setID(Integer.parseInt(table.getSelectionModel().getSelectedItem().getId()));
-        e_sC.refreshBox();
-//        e_sC.setSC(this);
+        edit_logisticsController e_lC = loader.getController();
+        e_lC.setID(Integer.parseInt(table.getSelectionModel().getSelectedItem().getId()));
+        e_lC.refreshBox();
+        e_lC.setLC(this);
         stage.setScene(new Scene(root));
         stage.show();
     }
@@ -224,7 +224,7 @@ public class logisticsController {
         Parent root = loader.load();
         delete_modalController d_mC = loader.getController();
         d_mC.setID(Integer.parseInt(table.getSelectionModel().getSelectedItem().getId()));
-//        d_mC.setSC(this);
+        d_mC.setLC(this);
         stage.setScene(new Scene(root));
         stage.show();
     }

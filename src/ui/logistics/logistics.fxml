@@ -144,7 +144,7 @@
                      <cellValueFactory><PropertyValueFactory property="customerAddress" /></cellValueFactory>
                   </TableColumn>
                   <TableColumn fx:id="logisticsProvider" prefWidth="200.0" text="Logistics Provider">
-                     <cellValueFactory><PropertyValueFactory property="logisticsProvider" /></cellValueFactory>
+                     <cellValueFactory><PropertyValueFactory property="logisticProvider" /></cellValueFactory>
                   </TableColumn>
                   <TableColumn fx:id="trackingNumber" prefWidth="200.0" text="Tracking Number">
                      <cellValueFactory><PropertyValueFactory property="trackingNumber" /></cellValueFactory>
