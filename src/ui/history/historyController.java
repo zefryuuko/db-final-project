@@ -9,6 +9,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
+import ui.finances.financesController;
+import ui.inventory.inventoryController;
+import ui.logistics.logisticsController;
+import ui.sales.salesController;
 import ui.staff.staffController;
 
 import java.io.IOException;
@@ -146,35 +150,50 @@ public class historyController {
     }
 
     public void clickSales() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../sales/sales.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../sales/sales.fxml"));
+        Parent root = loader.load();
+        salesController sC = loader.getController();
+        sC.refreshTable();
         Stage stage = (Stage) sales.getScene().getWindow();
         stage.setTitle("Lokalisasi Bali - Sales");
         stage.setScene(new Scene(root));
     }
 
     public void clickInventory() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../inventory/inventory.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../inventory/inventory.fxml"));
+        Parent root = loader.load();
+        inventoryController iC = loader.getController();
+        iC.refreshTable();
         Stage stage = (Stage) inventory.getScene().getWindow();
         stage.setTitle("Lokalisasi Bali - Inventory");
         stage.setScene(new Scene(root));
     }
 
     public void clickHistory() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("history.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../history/history.fxml"));
+        Parent root = loader.load();
+        historyController hC = loader.getController();
+        hC.refreshTable();
         Stage stage = (Stage) history.getScene().getWindow();
         stage.setTitle("Lokalisasi Bali - History");
         stage.setScene(new Scene(root));
     }
 
     public void clickFinances() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../finances/finances.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../finances/finances.fxml"));
+        Parent root = loader.load();
+        financesController fC = loader.getController();
+        fC.refreshTable();
         Stage stage = (Stage) finances.getScene().getWindow();
         stage.setTitle("Lokalisasi Bali - Finances");
         stage.setScene(new Scene(root));
     }
 
     public void clickLogistics() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../logistics/logistics.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../logistics/logistics.fxml"));
+        Parent root = loader.load();
+        logisticsController lC = loader.getController();
+        lC.refreshTable();
         Stage stage = (Stage) logistics.getScene().getWindow();
         stage.setTitle("Lokalisasi Bali - Logistics");
         stage.setScene(new Scene(root));

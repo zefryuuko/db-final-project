@@ -15,6 +15,7 @@ import ui.delete_modalController;
 import ui.finances.financesController;
 import ui.history.historyController;
 import ui.inventory.inventoryController;
+import ui.logistics.logisticsController;
 import ui.staff.add_staffController;
 import ui.staff.edit_staffController;
 import ui.staff.position.positionController;
@@ -178,7 +179,7 @@ public class salesController {
     }
 
     public void clickStaff() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("staff.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../staff/staff.fxml"));
         Parent root = loader.load();
         staffController sC = loader.getController();
         sC.refreshTable();
@@ -188,7 +189,10 @@ public class salesController {
     }
 
     public void clickSales() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../sales/sales.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../sales/sales.fxml"));
+        Parent root = loader.load();
+        salesController sC = loader.getController();
+        sC.refreshTable();
         Stage stage = (Stage) sales.getScene().getWindow();
         stage.setTitle("Lokalisasi Bali - Sales");
         stage.setScene(new Scene(root));
@@ -215,14 +219,20 @@ public class salesController {
     }
 
     public void clickFinances() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../finances/finances.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../finances/finances.fxml"));
+        Parent root = loader.load();
+        financesController fC = loader.getController();
+        fC.refreshTable();
         Stage stage = (Stage) finances.getScene().getWindow();
         stage.setTitle("Lokalisasi Bali - Finances");
         stage.setScene(new Scene(root));
     }
 
     public void clickLogistics() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../logistics/logistics.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../logistics/logistics.fxml"));
+        Parent root = loader.load();
+        logisticsController lC = loader.getController();
+        lC.refreshTable();
         Stage stage = (Stage) logistics.getScene().getWindow();
         stage.setTitle("Lokalisasi Bali - Logistics");
         stage.setScene(new Scene(root));
