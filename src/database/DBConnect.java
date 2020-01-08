@@ -18,7 +18,7 @@ public class DBConnect {
         try {
 
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://db.zryk.xyz/lokalisasibali", "david", "Password123");
+            connection = DriverManager.getConnection("jdbc:mysql://domain/db", "user", "pass");
         }
         catch (Exception e) {
             e.printStackTrace();
