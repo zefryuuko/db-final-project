@@ -60,7 +60,7 @@ public class Logistics extends DBConnect {
         ArrayList<Integer> linkedIds = new ArrayList<>();
 
         try {
-            String query = "SELECT sales_id FROM SalaryPaymentHistory";
+            String query = "SELECT sales_id FROM Logistics";
             PreparedStatement pst = connection.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
 
