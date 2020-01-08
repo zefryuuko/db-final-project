@@ -23,7 +23,7 @@ public class login_pageController {
         try {
             Integer.parseInt(idField.getText());
             if (Auth.authenticate(Integer.parseInt(idField.getText()), passwordField.getText())) {
-                Parent root = FXMLLoader.load(getClass().getResource("../home/home.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("../staff/staff.fxml"));
                 Stage stage = (Stage) signIn.getScene().getWindow();
                 stage.setScene(new Scene(root));
                 Main.staffID = Integer.parseInt(idField.getText());
