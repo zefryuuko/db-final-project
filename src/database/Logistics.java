@@ -97,6 +97,25 @@ public class Logistics extends DBConnect {
         return result;
     }
 
+    public static HashMap<Integer, String> getLogisticsProviders() {
+        HashMap<Integer, String> result = new HashMap<>();
+
+        try {
+            String query = "SELECT * FROM LogisticsProvider";
+            PreparedStatement pst = connection.prepareStatement(query);
+            ResultSet rs = pst.executeQuery();
+
+            while(rs.next()) {
+                result.put(rs.getInt("provider_id"), rs.getString("provider_name"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return result;
+        }
+
+        return result;
+    }
+
     // UPDATE
     public static boolean updateLogisticsEntry(int logisticsId, int staffId, int salesId, String custAddress, int providerId, int trackingNumber) {
         try {
